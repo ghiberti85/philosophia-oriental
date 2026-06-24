@@ -117,7 +117,7 @@ function Tenets({ school, locale, onIdea }: { school: School; locale: Locale; on
 function Thinkers({ school, locale, onOpen }: { school: School; locale: Locale; onOpen: (p: Philosopher) => void }) {
   const list = school.philosopherSlugs.map(getPhilosopher).filter((p): p is Philosopher => Boolean(p));
   return (
-    <Panel area="thinkers" glyph="◈" label={t(dict.keyThinkers, locale)} count={roman(list.length)} className="reveal" style={{ '--d': '200ms' } as CSSProperties}>
+    <Panel area="thinkers" glyph="◈" label={t(dict.keyThinkers, locale)} count={roman(list.length)} className="reveal panel--col" style={{ '--d': '200ms' } as CSSProperties}>
       <div className="thinkers-row">
         {list.map((p) => (
           <PhilosopherCard key={p.slug} p={p} locale={locale} onOpen={onOpen} />
