@@ -88,3 +88,8 @@ volumetric mist · sound · Vercel deploy with OG images.
 
 See [SECURITY.md](SECURITY.md) for the disclosure policy and a note on the static-site threat model.
 Licensed under [MIT](LICENSE) — content curated for educational purposes.
+
+## ☁️ Deployment
+
+Deploys to Vercel. See [docs/DEPLOY.md](docs/DEPLOY.md) for continuous deployment —
+either Vercel's native Git integration (recommended) or the in-repo GitHub Actions workflow.

@@ -1,0 +1,43 @@
+name: Deploy
+
+# Continuous deployment to Vercel via the Vercel CLI.
+#
+# This workflow is INERT by default — it only runs when the repository variable
+# ENABLE_VERCEL_DEPLOY is set to "true". Use it ONLY if you are NOT using
+# Vercel's native Git integration (the recommended path). Running both would
+# deploy twice. See docs/DEPLOY.md.
+#
+# To enable:
+#   1. Settings → Secrets and variables → Actions → Variables:
+#        ENABLE_VERCEL_DEPLOY = true
+#   2. Settings → Secrets and variables → Actions → Secrets:
+#        VERCEL_TOKEN       (https://vercel.com/account/tokens)
+#        VERCEL_ORG_ID      (team_fMJ7afMc8d1yvhtffVh2oAMB)
+#        VERCEL_PROJECT_ID  (Project → Settings → General, starts with prj_)
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  vercel:
+    if: ${{ vars.ENABLE_VERCEL_DEPLOY == 'true' }}
+    runs-on: ubuntu-latest
+    env:
+      VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+      VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+      IS_PROD: ${{ github.ref == 'refs/heads/main' }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm install --global vercel@latest
+      - name: Pull Vercel environment
+        run: vercel pull --yes --environment=${{ env.IS_PROD == 'true' && 'production' || 'preview' }} --token=${{ secrets.VERCEL_TOKEN }}
+      - name: Build
+        run: vercel build ${{ env.IS_PROD == 'true' && '--prod' || '' }} --token=${{ secrets.VERCEL_TOKEN }}
+      - name: Deploy
+        run: vercel deploy --prebuilt ${{ env.IS_PROD == 'true' && '--prod' || '' }} --token=${{ secrets.VERCEL_TOKEN }}
