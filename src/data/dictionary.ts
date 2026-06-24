@@ -125,6 +125,11 @@ export const dict = {
     pt: 'Os textos essenciais desta tradição — as obras que você lê para entender de onde vieram suas ideias e para onde elas conduziram. Selecionadas por profundidade e acessibilidade.',
   },
   historicalContext: { en: 'Historical context', pt: 'Contexto histórico' },
+  historicalFacts: { en: 'Meanwhile in the world', pt: 'Enquanto isso no mundo' },
+  historicalFactsInfo: {
+    en: 'Parallel events — wars, dynasties, inventions and milestones that help picture what was happening while these ideas took shape.',
+    pt: 'Eventos paralelos — guerras, dinastias, invenções e marcos que ajudam a imaginar o que acontecia enquanto essas ideias tomavam forma.',
+  },
   connections: { en: 'Connections', pt: 'Conexões' },
   connectionsPanel: {
     en: 'The threads that tie this school to the rest of the constellation — lineage, influence, synthesis and dissent. Select one to travel to it.',

@@ -1,11 +1,13 @@
 import type { Philosopher } from './types';
+import { philosophersExtra } from './philosophers-extra';
 
 /**
- * The sages of the eight schools. Each entry is fully bilingual and
+ * The core sages of the eight schools. Each entry is fully bilingual and
  * cross-referenced with its school(s); the data-integrity test guarantees
- * every reference resolves and every locale is filled in.
+ * every reference resolves and every locale is filled in. Secondary sages
+ * live in `philosophers-extra.ts` and are merged below.
  */
-export const philosophers: Philosopher[] = [
+const corePhilosophers: Philosopher[] = [
   {
     slug: 'confucius',
     name: { en: 'Confucius', pt: 'Confúcio' },
@@ -742,6 +744,9 @@ export const philosophers: Philosopher[] = [
     figureImage: '/figures/tsunetomo.svg',
   },
 ];
+
+/** All sages: the core set plus the secondary sages. */
+export const philosophers: Philosopher[] = [...corePhilosophers, ...philosophersExtra];
 
 /** Lookup a philosopher by slug. */
 export function getPhilosopher(slug: string): Philosopher | undefined {
