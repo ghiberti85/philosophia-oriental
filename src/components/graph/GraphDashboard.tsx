@@ -3,6 +3,7 @@
 import './graph.css';
 
 import dynamic from 'next/dynamic';
+import { useTheme } from 'next-themes';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { dict } from '@/data/dictionary';
 import { getSchool, schools } from '@/data/schools';
@@ -10,6 +11,7 @@ import { t, type Locale } from '@/lib/i18n';
 import { Topbar } from '@/components/Topbar';
 import { SchoolPanels } from '@/components/dashboard/SchoolPanels';
 import { GraphFallback } from './GraphFallback';
+import { GraphLegend } from './GraphLegend';
 
 // The WebGL scene never blocks first paint and is never server-rendered.
 const GraphScene = dynamic(() => import('./GraphScene'), {
@@ -35,6 +37,7 @@ function usePrefersReducedMotion(): boolean {
 
 export function GraphDashboard({ locale }: { locale: Locale }) {
   const reducedMotion = usePrefersReducedMotion();
+  const { resolvedTheme } = useTheme();
   const [selectedSlug, setSelectedSlug] = useState(DEFAULT_SLUG);
   const [view, setView] = useState<View>('graph');
   const [mounted, setMounted] = useState(false);
@@ -70,9 +73,12 @@ export function GraphDashboard({ locale }: { locale: Locale }) {
             <h2 className="graph-section__title serif">{t(dict.graphTitle, locale)}</h2>
             <p className="graph-section__sub">{t(dict.graphSubtitle, locale)}</p>
           </div>
-          <div className="seg" role="group" aria-label="view">
-            <button aria-current={view === 'graph'} onClick={() => setView('graph')}>3D</button>
-            <button aria-current={view === 'list'} onClick={() => setView('list')}>☰</button>
+          <div className="graph-section__controls">
+            <GraphLegend locale={locale} />
+            <div className="seg" role="group" aria-label="view">
+              <button aria-current={view === 'graph'} onClick={() => setView('graph')}>3D</button>
+              <button aria-current={view === 'list'} onClick={() => setView('list')}>☰</button>
+            </div>
           </div>
         </div>
 
@@ -84,6 +90,7 @@ export function GraphDashboard({ locale }: { locale: Locale }) {
                 onSelect={select}
                 locale={locale}
                 animate={!reducedMotion}
+                dark={resolvedTheme === 'dark'}
               />
               <span className="graph-hint mono" aria-hidden="true">{t(dict.graphHint, locale)}</span>
             </>

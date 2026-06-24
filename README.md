@@ -78,9 +78,11 @@ to add a school, sage, relation, quiz question or language.
 
 ## 🗺 Roadmap (Phase 2 — high "wow factor")
 
-Camera fly-to on selection · energy/particles flowing along lineage edges · bloom & postprocessing ·
-ensō intro animation · volumetric mist · DALL-E figures and scenes · procedural 3D busts on sage
-pages · relation legend/minimap · Vercel deploy with OG images.
+**Shipped:** camera fly-to on selection · energy motes flowing along edges · bloom postprocessing ·
+drifting starfield · relation legend · ensō intro animation.
+
+**Next:** DALL-E figures and scenes · procedural 3D busts on sage pages · relation minimap ·
+volumetric mist · sound · Vercel deploy with OG images.
 
 ## 🔐 Security & 📄 License
 

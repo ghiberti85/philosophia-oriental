@@ -151,3 +151,35 @@
 .panels-anchor {
   scroll-margin-top: 12px;
 }
+
+/* Controls row + relation legend */
+.graph-section__controls {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.graph-legend {
+  list-style: none;
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+}
+.graph-legend__item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.graph-legend__line {
+  width: 22px;
+  border-top: 2px solid var(--line-color, var(--accent));
+  display: inline-block;
+}
+.graph-legend__line.is-dashed {
+  border-top-style: dashed;
+}
+.graph-legend__label {
+  color: var(--fg-muted);
+}

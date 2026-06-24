@@ -1,9 +1,10 @@
 'use client';
 
-import { Line, OrbitControls } from '@react-three/drei';
-import { Canvas, useFrame } from '@react-three/fiber';
-import { useMemo, useRef } from 'react';
-import type { Group } from 'three';
+import { Line, OrbitControls, Stars } from '@react-three/drei';
+import { Canvas, useFrame, useThree } from '@react-three/fiber';
+import { Bloom, EffectComposer } from '@react-three/postprocessing';
+import { useEffect, useMemo, useRef } from 'react';
+import { Group, Mesh, Vector3 } from 'three';
 import { getSchool, schools } from '@/data/schools';
 import type { RelationType } from '@/data/types';
 import { buildGraph, isIncident } from '@/lib/graph';
@@ -17,6 +18,84 @@ const RELATION_COLOR: Record<RelationType, string> = {
   opposition: '#8a6d6d', // muted clay
 };
 
+/** A glowing mote of "energy" travelling along an edge. */
+function EdgePulse({
+  a,
+  b,
+  color,
+  phase,
+  incident,
+  animate,
+}: {
+  a: [number, number, number];
+  b: [number, number, number];
+  color: string;
+  phase: number;
+  incident: boolean;
+  animate: boolean;
+}) {
+  const ref = useRef<Mesh>(null);
+  const va = useMemo(() => new Vector3(...a), [a]);
+  const vb = useMemo(() => new Vector3(...b), [b]);
+  useFrame(({ clock }) => {
+    if (!ref.current) return;
+    const frac = animate ? (clock.getElapsedTime() * 0.22 + phase) % 1 : 0.5;
+    ref.current.position.lerpVectors(va, vb, frac);
+  });
+  return (
+    <mesh ref={ref}>
+      <sphereGeometry args={[incident ? 0.1 : 0.07, 12, 12]} />
+      <meshBasicMaterial color={color} transparent opacity={incident ? 1 : 0.7} />
+    </mesh>
+  );
+}
+
+/** Eases the camera and orbit target toward the selected node on change. */
+function Rig({ targetPos, animate }: { targetPos: [number, number, number]; animate: boolean }) {
+  const controls = useThree((s) => s.controls) as unknown as
+    | { target: Vector3; update: () => void }
+    | null;
+  const { camera } = useThree();
+  const flying = useRef(0);
+  const node = useMemo(() => new Vector3(...targetPos), [targetPos]);
+
+  // Re-arm the flight whenever the selected node changes.
+  useEffect(() => {
+    flying.current = animate ? 1 : 0;
+    if (!animate && controls) {
+      // Reduced motion: snap instantly.
+      controls.target.copy(node);
+      const dir = node.clone().normalize();
+      camera.position.copy(dir.multiplyScalar(node.length() + 8));
+      controls.update();
+    }
+  }, [node, animate, controls, camera]);
+
+  useFrame(() => {
+    if (!controls || flying.current === 0) return;
+    const desired = node.clone().normalize().multiplyScalar(node.length() + 8);
+    controls.target.lerp(node, 0.07);
+    camera.position.lerp(desired, 0.07);
+    controls.update();
+    if (controls.target.distanceTo(node) < 0.05) flying.current = 0;
+  });
+
+  return null;
+}
+
+/** Slowly drifting starfield for depth (visible mainly in dark mode). */
+function DriftingStars({ animate }: { animate: boolean }) {
+  const ref = useRef<Group>(null);
+  useFrame((_, delta) => {
+    if (ref.current && animate) ref.current.rotation.y += delta * 0.01;
+  });
+  return (
+    <group ref={ref}>
+      <Stars radius={40} depth={30} count={1400} factor={3} saturation={0} fade speed={0.4} />
+    </group>
+  );
+}
+
 function Constellation({
   selectedSlug,
   onSelect,
@@ -28,7 +107,6 @@ function Constellation({
   locale: Locale;
   animate: boolean;
 }) {
-  const group = useRef<Group>(null);
   const graph = useMemo(() => buildGraph(schools), []);
   const posBySlug = useMemo(() => {
     const m = new Map<string, [number, number, number]>();
@@ -45,36 +123,41 @@ function Constellation({
     return s;
   }, [graph, selectedSlug]);
 
-  useFrame((_, delta) => {
-    if (group.current && animate) group.current.rotation.y += delta * 0.05;
-  });
-
   return (
-    <group ref={group}>
-      {graph.edges.map((edge) => {
+    <group>
+      {graph.edges.map((edge, i) => {
         const a = posBySlug.get(edge.source);
         const b = posBySlug.get(edge.target);
         if (!a || !b) return null;
         const incident = isIncident(edge, selectedSlug);
         return (
-          <Line
-            key={`${edge.source}-${edge.target}`}
-            points={[a, b]}
-            color={RELATION_COLOR[edge.type]}
-            lineWidth={incident ? 2.4 : 1.1}
-            transparent
-            opacity={incident ? 0.95 : 0.4}
-            dashed={edge.type === 'opposition'}
-            dashSize={0.3}
-            gapSize={0.18}
-          />
+          <group key={`${edge.source}-${edge.target}`}>
+            <Line
+              points={[a, b]}
+              color={RELATION_COLOR[edge.type]}
+              lineWidth={incident ? 2.6 : 1.1}
+              transparent
+              opacity={incident ? 0.95 : 0.35}
+              dashed={edge.type === 'opposition'}
+              dashSize={0.3}
+              gapSize={0.18}
+            />
+            <EdgePulse
+              a={a}
+              b={b}
+              color={RELATION_COLOR[edge.type]}
+              phase={(i * 0.37) % 1}
+              incident={incident}
+              animate={animate}
+            />
+          </group>
         );
       })}
 
       {graph.nodes.map((node) => {
         const school = getSchool(node.slug);
         const dimmed =
-          selectedSlug !== node.slug && neighborSet.size > 0 && !neighborSet.has(node.slug) && node.slug !== selectedSlug;
+          selectedSlug !== node.slug && neighborSet.size > 0 && !neighborSet.has(node.slug);
         return (
           <GraphNode
             key={node.slug}
@@ -96,31 +179,45 @@ export default function GraphScene({
   onSelect,
   locale,
   animate,
+  dark,
 }: {
   selectedSlug: string;
   onSelect: (slug: string) => void;
   locale: Locale;
   animate: boolean;
+  dark: boolean;
 }) {
+  const selectedPos = useMemo<[number, number, number]>(() => {
+    const graph = buildGraph(schools);
+    return graph.nodes.find((n) => n.slug === selectedSlug)?.position ?? [0, 0, 0];
+  }, [selectedSlug]);
+
   return (
     <Canvas
-      camera={{ position: [0, 0, 13], fov: 50 }}
+      camera={{ position: [0, 0, 14], fov: 50 }}
       dpr={[1, 2]}
-      gl={{ antialias: true, alpha: true }}
       frameloop={animate ? 'always' : 'demand'}
     >
+      {/* Solid, theme-matched backdrop so bloom composites correctly. */}
+      <color attach="background" args={[dark ? '#0b0d12' : '#f3ede2']} />
       <ambientLight intensity={0.7} />
       <pointLight position={[10, 10, 10]} intensity={0.8} />
       <pointLight position={[-10, -6, -8]} intensity={0.4} color="#d9ad4f" />
+
+      <DriftingStars animate={animate} />
       <Constellation selectedSlug={selectedSlug} onSelect={onSelect} locale={locale} animate={animate} />
-      <OrbitControls
-        enablePan={false}
-        enableZoom
-        minDistance={8}
-        maxDistance={20}
-        autoRotate={false}
-        rotateSpeed={0.6}
-      />
+      <Rig targetPos={selectedPos} animate={animate} />
+
+      <OrbitControls makeDefault enablePan={false} enableZoom minDistance={8} maxDistance={22} rotateSpeed={0.6} />
+
+      <EffectComposer>
+        <Bloom
+          intensity={dark ? 0.85 : 0.4}
+          luminanceThreshold={0.25}
+          luminanceSmoothing={0.9}
+          mipmapBlur
+        />
+      </EffectComposer>
     </Canvas>
   );
 }

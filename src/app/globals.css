@@ -393,6 +393,17 @@ body::before {
   border-right-color: transparent;
   opacity: 0.5;
   transform: rotate(-30deg);
+  animation: ensoDraw 1.1s ease-out both;
+}
+@keyframes ensoDraw {
+  from {
+    opacity: 0;
+    transform: rotate(-150deg) scale(0.85);
+  }
+  to {
+    opacity: 0.5;
+    transform: rotate(-30deg) scale(1);
+  }
 }
 
 .stats-grid {
