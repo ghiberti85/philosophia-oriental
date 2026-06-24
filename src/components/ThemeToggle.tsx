@@ -30,7 +30,12 @@ export function ThemeToggle({ locale }: { locale: Locale }) {
       return;
     }
 
-    const { clientX: x, clientY: y } = e;
+    // On mobile, touch-generated click events can have clientX/Y = 0.
+    // Fall back to the button's visual centre so the ripple always starts
+    // from the correct position regardless of input device.
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = e.clientX || rect.left + rect.width / 2;
+    const y = e.clientY || rect.top + rect.height / 2;
     document.documentElement.style.setProperty('--vt-x', `${x}px`);
     document.documentElement.style.setProperty('--vt-y', `${y}px`);
 

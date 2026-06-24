@@ -64,6 +64,7 @@ html,
 body {
   margin: 0;
   padding: 0;
+  overflow-x: hidden; /* prevent horizontal scroll from any slightly-wide element */
 }
 
 /* ── Theme ripple (View Transitions API) ────────────────────────────────────
@@ -376,7 +377,7 @@ body::before {
   flex-wrap: wrap;
 }
 .hero__body {
-  flex: 1 1 320px;
+  flex: 1 1 220px; /* was 320px — let it be narrower on small phones */
 }
 .hero__period {
   display: inline-flex;
@@ -400,14 +401,14 @@ body::before {
 .hero__emblem {
   position: relative;
   flex: 0 0 auto;
-  width: 160px;
-  height: 160px;
+  width: clamp(110px, 28vw, 160px);
+  height: clamp(110px, 28vw, 160px);
   display: grid;
   place-items: center;
 }
 .hero__emblem-glyph {
   font-family: var(--font-serif);
-  font-size: 5.5rem;
+  font-size: clamp(3.4rem, 9vw, 5.5rem);
   line-height: 1;
   z-index: 1;
 }
@@ -460,7 +461,7 @@ body::before {
 }
 .stat__val {
   font-family: var(--font-serif);
-  font-size: 1.7rem;
+  font-size: clamp(1.3rem, 4.5vw, 1.7rem);
   font-weight: 700;
 }
 .stat__unit {
@@ -609,6 +610,7 @@ body::before {
 .context-body {
   line-height: 1.65;
   color: var(--fg);
+  overflow-wrap: break-word;
 }
 .context-open__more {
   color: var(--accent);
@@ -1121,6 +1123,51 @@ body::before {
   color: var(--fg-muted);
   line-height: 1.6;
   margin-bottom: 24px;
+}
+
+/* ── Mobile responsive overrides ─────────────────────────────────────── */
+
+/* Topbar: tighten on very small screens so wordmark + actions fit in one line */
+@media (max-width: 479px) {
+  .topbar { gap: 10px; }
+  .wordmark__glyph { font-size: 1.5rem; }
+  .wordmark__name { font-size: 1.05rem; }
+}
+
+/* Graph stage: 420px minimum is too tall for short mobile viewports.
+   Reduce to 340px so the 1st panel is visible below the fold on scroll. */
+.graph-stage {
+  height: clamp(340px, 55vh, 620px);
+}
+
+/* Graph section head: stack controls below title on small screens.
+   Also hide the relation legend (too wide) — the graph is still readable. */
+@media (max-width: 599px) {
+  .graph-section__head {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .graph-legend { display: none; }
+}
+
+/* Philosopher modal hero: allow portrait + meta to wrap on tiny phones */
+@media (max-width: 479px) {
+  .pm__hero,
+  .sm__hero {
+    flex-wrap: wrap;
+    padding-right: clamp(20px, 3vw, 30px);
+    padding-top: 52px; /* clear the close button */
+  }
+}
+
+/* Prose text: prevent long words / URLs from breaking the layout */
+.prose p,
+.context-body,
+.idea-deep__body,
+.bib-item__title {
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
 /* ── Animations ──────────────────────────────────────────────────────── */
