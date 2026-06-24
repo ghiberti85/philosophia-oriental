@@ -1,0 +1,153 @@
+/* Graph section — the interactive constellation that opens the page. */
+
+.graph-section {
+  margin-top: 22px;
+}
+.graph-section__head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 14px;
+}
+.graph-section__title {
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  margin: 0;
+}
+.graph-section__sub {
+  color: var(--fg-muted);
+  margin: 6px 0 0;
+  max-width: 70ch;
+  line-height: 1.55;
+}
+
+.graph-stage {
+  position: relative;
+  height: clamp(420px, 58vh, 620px);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background:
+    radial-gradient(120% 90% at 50% 0%, color-mix(in oklch, var(--accent) 9%, transparent), transparent 60%),
+    var(--bg-subtle);
+}
+.dark .graph-stage {
+  background:
+    radial-gradient(120% 90% at 50% 0%, color-mix(in oklch, var(--accent) 16%, transparent), transparent 60%),
+    radial-gradient(80% 80% at 50% 100%, color-mix(in oklch, var(--gold) 8%, transparent), transparent 60%),
+    #0b0d12;
+}
+.graph-hint {
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: var(--fg-muted);
+  pointer-events: none;
+  opacity: 0.8;
+}
+.graph-loading {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  color: var(--accent);
+  letter-spacing: 0.4em;
+}
+
+/* Node label (rendered via drei <Html> over each sphere) */
+.gnode-label {
+  --accent: var(--accent-base, #c2922f);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  transform: translateY(28px);
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--fg);
+  white-space: nowrap;
+  font-family: var(--font-sans);
+}
+.gnode-label__emblem {
+  font-family: var(--font-serif);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--accent-base);
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+}
+.gnode-label__name {
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 1px 8px;
+  border-radius: 999px;
+  background: color-mix(in oklch, var(--bg-panel) 80%, transparent);
+  border: 1px solid var(--border);
+}
+.gnode-label.is-selected .gnode-label__name {
+  border-color: var(--accent-base);
+  color: var(--accent-base);
+}
+
+/* Accessible / reduced-motion fallback list */
+.graph-fallback {
+  height: 100%;
+  overflow-y: auto;
+  padding: clamp(16px, 3vw, 28px);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.gf-group__title {
+  color: var(--accent);
+  margin: 0 0 10px;
+}
+.gf-group__items {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 10px;
+}
+.gf-node {
+  --accent: var(--accent-base, #c2922f);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--bg-panel);
+  cursor: pointer;
+  text-align: left;
+  transition: border-color 0.2s ease, transform 0.12s ease;
+}
+.gf-node:hover {
+  transform: translateY(-2px);
+}
+.gf-node.is-selected {
+  border-color: var(--accent-base);
+  box-shadow: 0 0 0 1px var(--accent-base) inset;
+}
+.gf-node__emblem {
+  font-family: var(--font-serif);
+  font-size: 1.7rem;
+  color: var(--accent-base);
+}
+.gf-node__name {
+  font-weight: 700;
+  display: block;
+}
+.gf-node__period {
+  color: var(--fg-muted);
+  font-size: 0.64rem;
+  display: block;
+}
+.gf-node__name,
+.gf-node__period {
+  margin: 0;
+}
+
+.panels-anchor {
+  scroll-margin-top: 12px;
+}

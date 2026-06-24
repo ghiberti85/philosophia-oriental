@@ -1,0 +1,13 @@
+{
+  "name": "Philosophia Oriental",
+  "short_name": "Philosophia O.",
+  "description": "A bilingual interactive constellation of the great schools of Eastern philosophy.",
+  "start_url": "/en",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#0f1117",
+  "theme_color": "#c8432a",
+  "icons": [
+    { "src": "/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ]
+}
