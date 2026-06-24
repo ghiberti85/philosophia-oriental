@@ -5,6 +5,7 @@ import { philosophers } from './philosophers';
 import { quizQuestions, getQuestionsFor } from './quizzes';
 import { schools } from './schools';
 import { schoolDetails } from './school-details';
+import { historicalFacts } from './historical-facts';
 
 /**
  * Content integrity suite: guarantees that every piece of content is fully
@@ -91,15 +92,32 @@ describe('graph relations', () => {
 });
 
 describe('school details', () => {
-  it('aligns idea essays with core ideas and is fully translated', () => {
+  it('aligns optional idea essays with core ideas and has translated context', () => {
     for (const [slug, detail] of Object.entries(schoolDetails)) {
       const school = schools.find((s) => s.slug === slug);
       expect(school, `details for unknown school ${slug}`).toBeTruthy();
       for (const locale of LOCALES) {
-        expect(detail.ideaDetails[locale].length, `${slug} ideaDetails ${locale}`).toBe(
-          school!.coreIdeas[locale].length,
-        );
-        expect(detail.contextLong[locale].length).toBeGreaterThan(0);
+        if (detail.ideaDetails) {
+          expect(detail.ideaDetails[locale].length, `${slug} ideaDetails ${locale}`).toBe(
+            school!.coreIdeas[locale].length,
+          );
+        }
+        expect(detail.contextLong[locale].length, `${slug} contextLong ${locale}`).toBeGreaterThan(0);
+      }
+    }
+  });
+});
+
+describe('historical facts', () => {
+  it('references existing schools and is fully translated', () => {
+    for (const [slug, facts] of Object.entries(historicalFacts)) {
+      expect(schoolSlugs.has(slug), `facts for unknown school ${slug}`).toBe(true);
+      expect(facts.length, `${slug} facts`).toBeGreaterThan(0);
+      for (const f of facts) {
+        expect(f.year, `${slug} fact year`).toBeTruthy();
+        for (const locale of LOCALES) {
+          expect(f.fact[locale], `${slug} fact ${locale}`).toBeTruthy();
+        }
       }
     }
   });

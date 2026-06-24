@@ -6,6 +6,7 @@ import { getPhilosopher } from '@/data/philosophers';
 import { getQuestionsFor } from '@/data/quizzes';
 import { schools, getSchool } from '@/data/schools';
 import { schoolDetails } from '@/data/school-details';
+import { getHistoricalFacts } from '@/data/historical-facts';
 import type { Philosopher, RelationType, School } from '@/data/types';
 import { buildGraph, neighbors, edgeType } from '@/lib/graph';
 import { t, type Locale } from '@/lib/i18n';
@@ -343,7 +344,7 @@ function IdeaModal({
   if (ideaIdx == null) return null;
   const ideas = t(school.coreIdeas, locale);
   const detail = schoolDetails[school.slug];
-  const text = detail ? t(detail.ideaDetails, locale)[ideaIdx] : undefined;
+  const text = detail?.ideaDetails ? t(detail.ideaDetails, locale)[ideaIdx] : undefined;
   return (
     <Modal open onClose={onClose} labelledby="idea-title" closeLabel={t(dict.close, locale)}>
       <div className="modal__scroll">
@@ -375,6 +376,7 @@ function ContextModal({
   if (!open) return null;
   const detail = schoolDetails[school.slug];
   const paras = detail ? t(detail.contextLong, locale) : [t(school.description, locale)];
+  const facts = getHistoricalFacts(school.slug);
   return (
     <Modal open onClose={onClose} labelledby="ctx-title" closeLabel={t(dict.close, locale)}>
       <div className="modal__scroll">
@@ -386,6 +388,24 @@ function ContextModal({
           <div className="prose dropcap">
             {paras.map((p, i) => <p key={i}>{p}</p>)}
           </div>
+
+          {facts.length > 0 && (
+            <div className="facts">
+              <div className="panel__head" style={{ marginTop: 26 }}>
+                <span className="glyph">✦</span>
+                <span className="mono">{t(dict.historicalFacts, locale)}</span>
+              </div>
+              <p className="lead">{t(dict.historicalFactsInfo, locale)}</p>
+              <ul className="facts-list">
+                {facts.map((f, i) => (
+                  <li key={i} className="fact">
+                    <span className="fact__year mono">{f.year}</span>
+                    <span className="fact__text">{t(f.fact, locale)}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
         </div>
       </div>
     </Modal>

@@ -14,8 +14,9 @@ This is the Eastern-philosophy companion to [**philosophia**](https://github.com
 | --- | --- |
 | 🪐 **3D knowledge graph** | Eight schools as nodes in a constellation (react-three-fiber); edges encode lineage, influence, synthesis and opposition. Selecting a node opens its dossier below. |
 | 🧭 **Accessible by design** | A keyboard- and screen-reader-friendly list view mirrors the graph and is the default under `prefers-reduced-motion`. |
-| 🏯 **8 schools of thought** | Confucianism, Taoism, Legalism, Mohism, Buddhism, Zen, Vedanta, Bushidō — each with core ideas, sages, deep-dive essays and a curated bibliography. |
-| 🧙 **15 sages** | Confucius, Mencius, Laozi, Zhuangzi, the Buddha, Nagarjuna, Bodhidharma, Dōgen, Shankara, Musashi and more — each with biography, contributions, sayings, traits and facts. |
+| 🏯 **8 schools of thought** | Confucianism, Taoism, Legalism, Mohism, Buddhism, Zen, Vedanta, Bushidō — each with core ideas, sages, deep-dive essays, a curated bibliography and a multi-paragraph historical context. |
+| 🧙 **30 sages** | Confucius, Mencius, Xunzi, Zhu Xi, Laozi, Zhuangzi, the Buddha, Nagarjuna, Huineng, Hakuin, Shankara, Ramanuja, Musashi and many more — each with biography, contributions, sayings, traits and facts. |
+| 🗓 **Parallel history** | Each school's context modal pairs its essay with a dated timeline of contemporaneous events — wars, dynasties, inventions and milestones. |
 | 🕸 **Connections panel** | Every school links back into the graph; jump straight to a related tradition. |
 | 🎲 **Randomized quizzes** | Each round draws 5 random questions with shuffled options; best score per school and per sage persisted in `localStorage`. |
 | 📜 **Quote of the day** | Deterministic daily rotation across every sage's sayings. |

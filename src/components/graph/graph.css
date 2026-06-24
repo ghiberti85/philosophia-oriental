@@ -112,8 +112,9 @@
 .gf-node {
   --accent: var(--accent-base, #c2922f);
   display: flex;
-  align-items: center;
-  gap: 12px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
   padding: 12px 14px;
   border: 1px solid var(--border);
   border-radius: var(--radius);
@@ -129,22 +130,28 @@
   border-color: var(--accent-base);
   box-shadow: 0 0 0 1px var(--accent-base) inset;
 }
+.gf-node__head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  min-width: 0;
+}
 .gf-node__emblem {
   font-family: var(--font-serif);
-  font-size: 1.7rem;
+  font-size: 1.55rem;
+  line-height: 1;
   color: var(--accent-base);
+  flex: 0 0 auto;
 }
 .gf-node__name {
   font-weight: 700;
-  display: block;
+  min-width: 0;
+  overflow-wrap: anywhere;
 }
 .gf-node__period {
   color: var(--fg-muted);
-  font-size: 0.64rem;
-  display: block;
-}
-.gf-node__name,
-.gf-node__period {
+  font-size: 0.66rem;
   margin: 0;
 }
 

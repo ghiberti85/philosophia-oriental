@@ -691,6 +691,16 @@ body::before {
 .tabpanel {
   padding: clamp(20px, 3vw, 34px);
 }
+/* Reserve clear space at the top of plain modals so the close button sits
+   above the heading instead of overlapping it. Hero-style modals (pm__hero /
+   sm__hero) already pad their own right side, so they are excluded. */
+.modal__scroll > .tabpanel:first-child,
+.modal__scroll > .quiz:first-child {
+  padding-top: clamp(46px, 5vw, 56px);
+}
+.modal .panel__head {
+  padding-right: 40px;
+}
 .idea-deep__title {
   font-size: 1.5rem;
   margin: 8px 0 14px;
@@ -830,6 +840,39 @@ body::before {
   color: var(--fg-muted);
   font-size: 0.88rem;
   font-style: italic;
+}
+
+/* ── Historical facts (parallel timeline) ────────────────────────────── */
+
+.facts-list {
+  list-style: none;
+  margin: 12px 0 0;
+  padding: 0;
+}
+.fact {
+  display: flex;
+  gap: 14px;
+  padding: 10px 0 10px 14px;
+  border-left: 2px solid var(--border);
+  position: relative;
+}
+.fact::before {
+  content: '';
+  position: absolute;
+  left: -5px;
+  top: 16px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+.fact__year {
+  flex: 0 0 84px;
+  color: var(--accent);
+  padding-top: 2px;
+}
+.fact__text {
+  line-height: 1.55;
 }
 
 /* ── Quiz ────────────────────────────────────────────────────────────── */

@@ -1,13 +1,15 @@
 import type { QuizQuestion } from './types';
+import { quizzesExtra } from './quizzes-extra';
 
 /**
  * The quiz bank. Convention: in every question the FIRST option is the
  * correct answer — `lib/quiz.ts` shuffles the options at runtime and tracks
  * where the correct one lands. The data-integrity test guarantees every
  * philosopher has at least one question and every question has four distinct,
- * fully translated options.
+ * fully translated options. Questions for the secondary sages live in
+ * `quizzes-extra.ts` and are merged below.
  */
-export const quizQuestions: QuizQuestion[] = [
+const baseQuizQuestions: QuizQuestion[] = [
   // ── Confucius ──────────────────────────────────────────────────────────
   {
     id: 'confucius-1',
@@ -428,6 +430,9 @@ export const quizQuestions: QuizQuestion[] = [
     explanation: { en: 'Its opening lines say the warrior\'s Way is found in readiness for death.', pt: 'Suas linhas iniciais dizem que o Caminho do guerreiro está na prontidão para a morte.' },
   },
 ];
+
+/** The full quiz bank: core questions plus those for the secondary sages. */
+export const quizQuestions: QuizQuestion[] = [...baseQuizQuestions, ...quizzesExtra];
 
 /** All questions for a given philosopher. */
 export function getQuestionsFor(philosopherSlug: string): QuizQuestion[] {

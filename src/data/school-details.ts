@@ -7,8 +7,8 @@ import type { Localized } from '@/lib/i18n';
  * the UI falls back to the short description when a detail is absent.
  */
 export interface SchoolDetail {
-  /** ideaDetails[i] expands coreIdeas[i]. */
-  ideaDetails: Localized<string[]>;
+  /** ideaDetails[i] expands coreIdeas[i]. Optional — falls back to the short idea text. */
+  ideaDetails?: Localized<string[]>;
   /** Extended historical context, one paragraph per entry. */
   contextLong: Localized<string[]>;
 }
@@ -33,10 +33,12 @@ export const schoolDetails: Record<string, SchoolDetail> = {
       en: [
         'Confucius lived during the Spring and Autumn period, as the Zhou dynasty\'s authority crumbled into the rivalries that would become the Warring States. Into this disorder he offered not new gods or laws but a vision of moral renewal rooted in the idealised rituals of early Zhou. Rejected by the rulers of his day, he poured himself into teaching, and it was his students and their students who carried his name forward.',
         'For centuries Confucianism competed with Taoism, Mohism and Legalism. Its triumph came under the Han dynasty, which made it the official doctrine of the state and the curriculum of the examinations that selected officials — a role it held, with interruptions and reinventions, into the twentieth century. No body of thought has shaped more human lives.',
+        'Confucianism never hardened into a single creed. It absorbed Buddhist and Taoist ideas, was reborn as the rigorous metaphysics of the Song-dynasty Neo-Confucians, was attacked as a relic during China\'s twentieth-century revolutions, and is studied again today across East Asia — and increasingly the West — as a living ethic of family, learning, ritual and public responsibility.',
       ],
       pt: [
         'Confúcio viveu durante o período das Primaveras e Outonos, quando a autoridade da dinastia Zhou se esfacelava nas rivalidades que dariam nos Reinos Combatentes. A essa desordem ele ofereceu não novos deuses ou leis, mas uma visão de renovação moral enraizada nos rituais idealizados dos primeiros Zhou. Rejeitado pelos governantes de seu tempo, dedicou-se ao ensino, e foram seus discípulos, e os discípulos destes, que levaram seu nome adiante.',
         'Por séculos o confucionismo competiu com o taoísmo, o moísmo e o legalismo. Seu triunfo veio sob a dinastia Han, que o fez doutrina oficial do Estado e currículo dos exames que selecionavam os funcionários — papel que manteve, com interrupções e reinvenções, até o século XX. Nenhum corpo de pensamento moldou mais vidas humanas.',
+        'O confucionismo nunca se cristalizou num credo único. Absorveu ideias budistas e taoístas, renasceu como a rigorosa metafísica dos neoconfucianos da dinastia Song, foi atacado como relíquia durante as revoluções chinesas do século XX e hoje volta a ser estudado em todo o Leste Asiático — e cada vez mais no Ocidente — como uma ética viva da família, do estudo, do ritual e da responsabilidade pública.',
       ],
     },
   },
@@ -59,10 +61,12 @@ export const schoolDetails: Record<string, SchoolDetail> = {
       en: [
         'Taoism arose in the same age of turmoil as Confucianism, but pointed in the opposite direction. Where Confucius sought to repair society through ritual and duty, the Taoist texts counselled stepping back from ambition and aligning with the rhythms of nature. The two became the great complementary poles of the Chinese mind — many a scholar was a Confucian in office and a Taoist in retirement.',
         'Beyond philosophy, Taoism gave rise to a vast religious tradition of alchemy, meditation and the pursuit of longevity, and it shaped Chinese poetry, painting and medicine. Its encounter with Indian Buddhism helped give birth to Chan, which travelled to Japan as Zen.',
+        'Its love of nature and spontaneity flows through the landscape paintings and mountain poetry of imperial China, and its counsel of yielding, emptiness and the strength of the soft still circulates worldwide through the Tao Te Ching — one of the most translated books ever written.',
       ],
       pt: [
         'O taoísmo surgiu na mesma era de tumulto que o confucionismo, mas apontava para a direção oposta. Onde Confúcio buscava reparar a sociedade pelo ritual e pelo dever, os textos taoístas aconselhavam recuar da ambição e afinar-se com os ritmos da natureza. Os dois tornaram-se os grandes polos complementares da mente chinesa — muitos eruditos foram confucianos no cargo e taoístas na reclusão.',
         'Para além da filosofia, o taoísmo deu origem a uma vasta tradição religiosa de alquimia, meditação e busca da longevidade, e moldou a poesia, a pintura e a medicina chinesas. Seu encontro com o budismo indiano ajudou a fazer nascer o Chan, que viajou ao Japão como Zen.',
+        'Seu amor pela natureza e pela espontaneidade atravessa a pintura de paisagem e a poesia das montanhas da China imperial, e seu conselho de ceder, esvaziar-se e confiar na força do brando ainda circula pelo mundo através do Tao Te Ching — um dos livros mais traduzidos já escritos.',
       ],
     },
   },
@@ -85,10 +89,12 @@ export const schoolDetails: Record<string, SchoolDetail> = {
       en: [
         'Buddhism began in the Ganges plain around the fifth century BC, amid a ferment of wandering ascetics questioning the authority of the Vedas. The Buddha\'s teaching spread first across India under the patronage of the emperor Ashoka, then along trade routes into Central, East and Southeast Asia, adapting to each culture it met.',
         'Over time it branched into the Theravada of Sri Lanka and Southeast Asia, the Mahayana of China, Korea and Japan, and the Vajrayana of Tibet. Despite their differences, all carry the Buddha\'s core insight into suffering and its end — and a sophisticated philosophy of mind that continues to draw interest from psychology and Western thought.',
+        'Curiously, Buddhism eventually faded in the India that birthed it, even as it became the faith of much of Asia. In the modern age it has become a global movement: its meditation practices are studied by neuroscientists, and its analysis of mind, self and suffering is in active dialogue with physics, philosophy and the cognitive sciences.',
       ],
       pt: [
         'O budismo começou na planície do Ganges por volta do século V a.C., em meio a um fervilhar de ascetas errantes que questionavam a autoridade dos Vedas. O ensino do Buda espalhou-se primeiro pela Índia sob o patrocínio do imperador Ashoka e depois pelas rotas comerciais até a Ásia Central, Oriental e do Sudeste, adaptando-se a cada cultura que encontrava.',
         'Com o tempo, ramificou-se no Theravada do Sri Lanka e do Sudeste Asiático, no Mahayana da China, Coreia e Japão, e no Vajrayana do Tibete. Apesar das diferenças, todos carregam a intuição central do Buda sobre o sofrimento e seu fim — e uma sofisticada filosofia da mente que segue atraindo o interesse da psicologia e do pensamento ocidental.',
+        'Curiosamente, o budismo acabou por declinar na própria Índia que o gerou, ainda que se tornasse a fé de boa parte da Ásia. Na era moderna virou um movimento global: suas práticas de meditação são estudadas por neurocientistas, e sua análise da mente, do eu e do sofrimento dialoga ativamente com a física, a filosofia e as ciências cognitivas.',
       ],
     },
   },
@@ -111,10 +117,68 @@ export const schoolDetails: Record<string, SchoolDetail> = {
       en: [
         'Zen began as Chan in China, when the meditative current of Indian Buddhism met the naturalism of Taoism. Tradition traces it to the Indian monk Bodhidharma and a lineage of patriarchs, flowering in the Tang and Song dynasties into the iconoclastic style of masters who shouted, struck and posed riddles to jolt students awake.',
         'Carried to Japan in the twelfth and thirteenth centuries, Chan became Zen, splitting into the Rinzai school of the koan and Dōgen\'s Sōtō school of silent sitting. There it shaped the warrior class, the tea ceremony and an entire aesthetic of restraint and emptiness that still defines Japanese art.',
+        'In the twentieth century teachers like D. T. Suzuki carried Zen to the West, where it touched artists, poets and the modern mindfulness movement. True to its origins, it still insists that the point is not to talk about awakening but to sit down and taste it directly.',
       ],
       pt: [
         'O Zen começou como Chan na China, quando a corrente meditativa do budismo indiano encontrou o naturalismo do taoísmo. A tradição o faz remontar ao monge indiano Bodhidharma e a uma linhagem de patriarcas, florescendo nas dinastias Tang e Song no estilo iconoclasta de mestres que gritavam, golpeavam e propunham enigmas para sacudir os discípulos rumo ao despertar.',
         'Levado ao Japão nos séculos XII e XIII, o Chan tornou-se Zen, cindindo-se na escola Rinzai do koan e na escola Sōtō de Dōgen, do sentar silencioso. Ali moldou a classe guerreira, a cerimônia do chá e toda uma estética de contenção e vazio que ainda define a arte japonesa.',
+        'No século XX, mestres como D. T. Suzuki levaram o Zen ao Ocidente, onde tocou artistas, poetas e o moderno movimento de mindfulness. Fiel às suas origens, ele ainda insiste em que o ponto não é falar sobre o despertar, mas sentar-se e prová-lo diretamente.',
+      ],
+    },
+  },
+  legalism: {
+    contextLong: {
+      en: [
+        'Legalism crystallized in the chaos of the Warring States, when seven great kingdoms fought for survival and the old aristocratic order was breaking down. Thinkers like Shang Yang, Shen Buhai and Han Feizi asked a ruthless question: how can a ruler hold and strengthen a state when neither tradition nor personal virtue can be relied upon?',
+        'Their answer was system over sentiment — clear public law, impartial reward and punishment, and administrative method that did not depend on the ruler being wise or good. Adopted wholesale by the state of Qin, these methods built the army and bureaucracy that conquered every rival and, in 221 BC, unified China for the first time.',
+        'But the Qin\'s severity — forced labor, censorship, brutal punishments — provoked rebellion, and the dynasty fell within a single generation. Legalism was forever branded as tyranny; yet every later dynasty quietly kept its tools, governing in practice with a Confucian face over a Legalist skeleton.',
+      ],
+      pt: [
+        'O legalismo cristalizou-se no caos dos Reinos Combatentes, quando sete grandes reinos lutavam pela sobrevivência e a velha ordem aristocrática ruía. Pensadores como Shang Yang, Shen Buhai e Han Feizi faziam uma pergunta implacável: como um governante pode manter e fortalecer um Estado quando nem a tradição nem a virtude pessoal são confiáveis?',
+        'Sua resposta foi o sistema acima do sentimento — lei pública clara, recompensa e castigo imparciais e um método administrativo que não dependia de o governante ser sábio ou bom. Adotados em bloco pelo Estado de Qin, esses métodos ergueram o exército e a burocracia que conquistaram todos os rivais e, em 221 a.C., unificaram a China pela primeira vez.',
+        'Mas a severidade de Qin — trabalho forçado, censura, punições brutais — provocou a revolta, e a dinastia caiu em uma só geração. O legalismo ficou para sempre marcado como tirania; ainda assim, toda dinastia posterior guardou em silêncio suas ferramentas, governando na prática com um rosto confuciano sobre um esqueleto legalista.',
+      ],
+    },
+  },
+  mohism: {
+    contextLong: {
+      en: [
+        'Mohism arose in the fifth century BC as the first organized rival to Confucianism, founded by Mozi, a man of the artisan class rather than the scholar-gentry. In an age of constant war between states, the Mohists were radicals of peace and utility, judging every custom by a single test: does it benefit the common people?',
+        'They were not only philosophers but a disciplined, almost military brotherhood. Famous as expert engineers of fortification, they would march to any city threatened by aggressive war and organize its defense, turning their doctrine of impartial care into concrete action. The later Mohists also built China\'s first systematic logic and studied optics and geometry.',
+        'Under the unified empire, with its hostility to independent organizations, Mohism declined rapidly and its texts were nearly lost. Rediscovered and re-edited only in modern times, it is now recognized as one of classical China\'s most original and rigorous schools — its impartial ethics strikingly close to later ideals of universal benevolence.',
+      ],
+      pt: [
+        'O moísmo surgiu no século V a.C. como o primeiro rival organizado do confucionismo, fundado por Mozi, homem da classe artesã e não da nobreza letrada. Numa era de guerra constante entre os Estados, os moístas eram radicais da paz e da utilidade, julgando cada costume por um único teste: ele beneficia o povo comum?',
+        'Não eram apenas filósofos, mas uma irmandade disciplinada, quase militar. Célebres como exímios engenheiros de fortificação, marchavam a qualquer cidade ameaçada por guerra agressiva e organizavam sua defesa, convertendo a doutrina do cuidado imparcial em ação concreta. Os moístas tardios também ergueram a primeira lógica sistemática da China e estudaram óptica e geometria.',
+        'Sob o império unificado, hostil às organizações independentes, o moísmo declinou depressa e seus textos quase se perderam. Redescoberto e reeditado apenas nos tempos modernos, é hoje reconhecido como uma das escolas mais originais e rigorosas da China clássica — sua ética imparcial surpreendentemente próxima de ideais posteriores de benevolência universal.',
+      ],
+    },
+  },
+  vedanta: {
+    contextLong: {
+      en: [
+        'Vedanta — literally "the end of the Vedas" — grew from the Upanishads, the visionary dialogues composed in India from around the eighth century BC that turned away from ritual sacrifice toward the inner question of the self. What, they asked, is the reality behind appearances, and who are we beneath the changing play of the senses?',
+        'Over the centuries this stream divided into great schools. Shankara\'s Advaita (non-dualism) held that the self and the absolute are utterly one and the world a veiling appearance; Ramanuja\'s qualified non-dualism made room for love and a personal God; Madhva\'s dualism kept soul and God forever distinct. Their debates are among the most subtle in all of philosophy.',
+        'Carried alongside the Bhagavad Gita and the disciplined practice of yoga, Vedanta became the philosophical backbone of Hindu thought. In the modern era figures like Vivekananda brought it to a global audience, and its vision of a single reality underlying all things still fascinates philosophers, scientists and seekers worldwide.',
+      ],
+      pt: [
+        'O Vedanta — literalmente "o fim dos Vedas" — nasceu dos Upanixades, os diálogos visionários compostos na Índia a partir de cerca do século VIII a.C., que se voltaram do sacrifício ritual para a questão interior do eu. Qual, perguntavam, é a realidade por trás das aparências, e quem somos nós sob o jogo mutável dos sentidos?',
+        'Ao longo dos séculos essa corrente dividiu-se em grandes escolas. O Advaita (não-dualismo) de Shankara sustentava que o eu e o absoluto são absolutamente um, e o mundo uma aparência que vela; o não-dualismo qualificado de Ramanuja abriu espaço para o amor e um Deus pessoal; o dualismo de Madhva manteve alma e Deus para sempre distintos. Seus debates estão entre os mais sutis de toda a filosofia.',
+        'Levado ao lado da Bhagavad Gita e da prática disciplinada do yoga, o Vedanta tornou-se a espinha dorsal filosófica do pensamento hindu. Na era moderna, figuras como Vivekananda o levaram a um público global, e sua visão de uma realidade única que sustenta todas as coisas ainda fascina filósofos, cientistas e buscadores pelo mundo.',
+      ],
+    },
+  },
+  bushido: {
+    contextLong: {
+      en: [
+        'Bushidō was not set down as a code until late in its history; it grew over centuries as the lived ethos of the samurai, the warrior class that ruled Japan from the Kamakura shogunate of 1185 until the nineteenth century. Loyalty to one\'s lord, fearlessness in battle and honor unto death were forged in an age of near-constant civil war.',
+        'Into this warrior life flowed three great currents: Zen, which trained the mind to act without hesitation or fear of death; Confucianism, which supplied ideals of loyalty, duty and rectitude; and Shinto, with its reverence for ancestors and purity. The result was a demanding fusion of discipline, aesthetics and ethics that shaped swordsmanship, tea, poetry and calligraphy alike.',
+        'Paradoxically, the code received its most famous expression — Musashi\'s Book of Five Rings and the Hagakure — during the long Tokugawa peace, when the samurai had few wars left to fight. After the Meiji Restoration of 1868 abolished the class, Bushidō was reimagined as the "soul of Japan", an idealized heritage whose meaning is still debated today.',
+      ],
+      pt: [
+        'O Bushidō só foi posto por escrito como código tardiamente; cresceu ao longo de séculos como o ethos vivido dos samurais, a classe guerreira que governou o Japão do xogunato de Kamakura, em 1185, até o século XIX. A lealdade ao senhor, a destemidez em combate e a honra até a morte forjaram-se numa era de guerra civil quase contínua.',
+        'A essa vida guerreira afluíram três grandes correntes: o Zen, que treinava a mente para agir sem hesitação nem medo da morte; o confucionismo, que fornecia ideais de lealdade, dever e retidão; e o xintoísmo, com sua reverência aos ancestrais e à pureza. O resultado foi uma fusão exigente de disciplina, estética e ética que moldou a esgrima, o chá, a poesia e a caligrafia.',
+        'Paradoxalmente, o código recebeu sua expressão mais famosa — o Livro dos Cinco Anéis de Musashi e o Hagakure — durante a longa paz Tokugawa, quando aos samurais restavam poucas guerras a travar. Depois que a Restauração Meiji de 1868 aboliu a classe, o Bushidō foi reimaginado como a "alma do Japão", uma herança idealizada cujo sentido ainda hoje se debate.',
       ],
     },
   },

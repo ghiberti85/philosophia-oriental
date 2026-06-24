@@ -43,8 +43,10 @@ export function GraphFallback({
                   onClick={() => onSelect(s.slug)}
                   style={{ ['--accent-base' as string]: s.accent }}
                 >
-                  <span className="gf-node__emblem" aria-hidden="true">{s.emblem}</span>
-                  <span className="gf-node__name serif">{t(s.name, locale)}</span>
+                  <span className="gf-node__head">
+                    <span className="gf-node__emblem" aria-hidden="true">{s.emblem}</span>
+                    <span className="gf-node__name serif">{t(s.name, locale)}</span>
+                  </span>
                   <span className="gf-node__period mono">{t(s.period, locale)}</span>
                 </button>
               ))}

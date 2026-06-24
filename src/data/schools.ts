@@ -35,7 +35,7 @@ export const schools: School[] = [
         'O cultivo de si como raiz de um mundo bem governado',
       ],
     },
-    philosopherSlugs: ['confucius', 'mencius'],
+    philosopherSlugs: ['confucius', 'mencius', 'xunzi', 'zhu-xi'],
     relations: [
       { to: 'legalism', type: 'opposition' },
       { to: 'mohism', type: 'opposition' },
@@ -78,7 +78,7 @@ export const schools: School[] = [
         'A simplicidade, a espontaneidade e o retorno ao natural',
       ],
     },
-    philosopherSlugs: ['laozi', 'zhuangzi'],
+    philosopherSlugs: ['laozi', 'zhuangzi', 'liezi', 'wang-bi'],
     relations: [{ to: 'zen', type: 'synthesis' }],
     accent: '#3f8a60',
     keyWorks: [
@@ -116,7 +116,7 @@ export const schools: School[] = [
         'Recompensa e castigo como as "duas alavancas" do governo',
       ],
     },
-    philosopherSlugs: ['han-feizi', 'shang-yang'],
+    philosopherSlugs: ['han-feizi', 'shang-yang', 'shen-buhai', 'li-si'],
     relations: [{ to: 'mohism', type: 'influence' }],
     accent: '#a63420',
     keyWorks: [
@@ -153,7 +153,7 @@ export const schools: School[] = [
         'Uma lógica rigorosa pioneira e padrões de argumentação',
       ],
     },
-    philosopherSlugs: ['mozi'],
+    philosopherSlugs: ['mozi', 'qin-huali'],
     relations: [],
     accent: '#5b7fb9',
     keyWorks: [
@@ -189,7 +189,7 @@ export const schools: School[] = [
         'A originação dependente: nada existe de modo independente',
       ],
     },
-    philosopherSlugs: ['buddha', 'nagarjuna'],
+    philosopherSlugs: ['buddha', 'nagarjuna', 'vasubandhu', 'buddhaghosa'],
     relations: [{ to: 'zen', type: 'lineage' }],
     accent: '#d9ad4f',
     keyWorks: [
@@ -227,7 +227,7 @@ export const schools: School[] = [
         'A iluminação no momento comum e presente',
       ],
     },
-    philosopherSlugs: ['bodhidharma', 'dogen'],
+    philosopherSlugs: ['bodhidharma', 'dogen', 'huineng', 'hakuin'],
     relations: [{ to: 'bushido', type: 'influence' }],
     accent: '#6a7b8c',
     keyWorks: [
@@ -264,7 +264,7 @@ export const schools: School[] = [
         'Yoga: o aquietamento disciplinado das flutuações da mente',
       ],
     },
-    philosopherSlugs: ['shankara', 'patanjali'],
+    philosopherSlugs: ['shankara', 'patanjali', 'ramanuja', 'madhva'],
     relations: [{ to: 'buddhism', type: 'influence' }],
     accent: '#b06a3f',
     keyWorks: [
@@ -302,7 +302,7 @@ export const schools: School[] = [
         'A prontidão para a morte como base da ação sem medo',
       ],
     },
-    philosopherSlugs: ['musashi', 'tsunetomo'],
+    philosopherSlugs: ['musashi', 'tsunetomo', 'takuan', 'nitobe'],
     relations: [],
     accent: '#8a4b4b',
     keyWorks: [
