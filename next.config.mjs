@@ -49,7 +49,24 @@ const nextConfig = {
     ];
   },
   async headers() {
-    return [{ source: '/:path*', headers: securityHeaders }];
+    return [
+      { source: '/:path*', headers: securityHeaders },
+      // The service-worker script must never be served from the HTTP cache,
+      // otherwise the browser keeps revalidating against a stale copy and a
+      // newly deployed worker (with skipWaiting) is never picked up. Forcing
+      // revalidation is what guarantees a fresh deploy reaches installed PWAs.
+      {
+        source: '/sw.js',
+        headers: [
+          { key: 'Cache-Control', value: 'no-cache, no-store, must-revalidate' },
+          { key: 'Service-Worker-Allowed', value: '/' },
+        ],
+      },
+      {
+        source: '/manifest.json',
+        headers: [{ key: 'Cache-Control', value: 'no-cache, no-store, must-revalidate' }],
+      },
+    ];
   },
 };
 
