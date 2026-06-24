@@ -66,6 +66,30 @@ body {
   padding: 0;
 }
 
+/* ── Theme ripple (View Transitions API) ────────────────────────────────────
+   A circle expands from the toggle-button click point, revealing the new
+   theme beneath. Disabled automatically when the API is unavailable or the
+   JS side detects prefers-reduced-motion (so no @media guard needed here,
+   but we keep one for browsers that handle the animation natively). */
+@media (prefers-reduced-motion: no-preference) {
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation: none;
+    mix-blend-mode: normal;
+  }
+
+  ::view-transition-new(root) {
+    clip-path: circle(0 at var(--vt-x, 50%) var(--vt-y, 50%));
+    animation: vt-ripple 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+
+  @keyframes vt-ripple {
+    to {
+      clip-path: circle(150vmax at var(--vt-x, 50%) var(--vt-y, 50%));
+    }
+  }
+}
+
 body {
   font-family: var(--font-sans);
   background: var(--bg);
