@@ -11,6 +11,17 @@ updates:
           - '@react-three/*'
           - 'three'
           - '@types/three'
+    # The react-three ecosystem's current majors (drei 10+, fiber 9+,
+    # postprocessing 3+) require React 19; this project targets React 18.
+    # Ignore those breaking majors so Dependabot stops opening PRs that fail
+    # `npm install` with ERESOLVE. Revisit when migrating to React 19.
+    ignore:
+      - dependency-name: '@react-three/drei'
+        update-types: ['version-update:semver-major']
+      - dependency-name: '@react-three/fiber'
+        update-types: ['version-update:semver-major']
+      - dependency-name: '@react-three/postprocessing'
+        update-types: ['version-update:semver-major']
   - package-ecosystem: github-actions
     directory: '/'
     schedule:
