@@ -137,6 +137,11 @@ export const dict = {
   relLineage: { en: 'Lineage', pt: 'Linhagem' },
   learnMore: { en: 'Learn more', pt: 'Saiba mais' },
   travelTo: { en: 'Travel to', pt: 'Viajar para' },
+  legendTitle: { en: 'Threads', pt: 'Fios' },
+  legendLineage: { en: 'Lineage', pt: 'Linhagem' },
+  legendInfluence: { en: 'Influence', pt: 'Influência' },
+  legendSynthesis: { en: 'Synthesis', pt: 'Síntese' },
+  legendOpposition: { en: 'Opposition', pt: 'Oposição' },
 } satisfies Record<string, Localized>;
 
 export type DictKey = keyof typeof dict;
