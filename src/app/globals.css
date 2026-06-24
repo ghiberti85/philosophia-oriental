@@ -364,8 +364,7 @@ body::before {
       'hero hero'
       'stats stats'
       'ideas thinkers'
-      'context thinkers'
-      'connections connections';
+      'context connections';
   }
 }
 
@@ -531,22 +530,31 @@ body::before {
 /* ── Thinkers ────────────────────────────────────────────────────────── */
 
 .thinkers-row {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   gap: 12px;
+}
+/* Let the thinkers panel stretch its card grid into the shared row height,
+   so 4 sages fill the column instead of leaving it half-empty. */
+.panel--col {
+  display: flex;
+  flex-direction: column;
+}
+.panel--col .thinkers-row {
+  flex: 1;
+  grid-auto-rows: minmax(64px, 1fr);
 }
 .thinker-card {
   display: flex;
   align-items: center;
   gap: 12px;
-  padding: 10px 14px 10px 10px;
+  padding: 12px 14px;
   border: 1px solid var(--border);
   border-radius: var(--radius);
   background: var(--bg);
   cursor: pointer;
   text-align: left;
   transition: border-color 0.2s ease, transform 0.12s ease;
-  flex: 1 1 200px;
 }
 .thinker-card:hover {
   border-color: var(--accent);
