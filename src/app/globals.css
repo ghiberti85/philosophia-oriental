@@ -355,6 +355,18 @@ body::before {
 .dash {
   display: grid;
   grid-template-columns: 1fr;
+  /* Single-column mobile order. Without naming the areas here, the panels'
+     `grid-area: hero/stats/…` inline styles reference areas that only exist
+     in the desktop template below, so every panel collapses into the same
+     implicit cell and overlaps — leaving only the last one (Connections)
+     visible. Defining the column stack fixes the mobile layout. */
+  grid-template-areas:
+    'hero'
+    'stats'
+    'ideas'
+    'thinkers'
+    'context'
+    'connections';
   gap: 18px;
   margin-top: 22px;
 }
