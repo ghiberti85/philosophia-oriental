@@ -56,4 +56,51 @@ const nextConfig = {
 export default withPWA({
   dest: 'public',
   disable: isDev,
+  register: true,
+  // Activate a freshly deployed service worker immediately and take control of
+  // all open tabs, instead of waiting until every tab is closed. This is what
+  // makes new deploys show up on the next load rather than days later.
+  skipWaiting: true,
+  // When connectivity is (re)gained, reload so the latest assets are shown.
+  reloadOnOnline: true,
+  // Always fetch the HTML document from the network first (falling back to the
+  // cache only when offline), so a new deploy's markup — which points at the
+  // new hashed CSS/JS — is picked up right away.
+  runtimeCaching: [
+    {
+      urlPattern: ({ request }) => request.mode === 'navigate',
+      handler: 'NetworkFirst',
+      options: {
+        cacheName: 'html-pages',
+        networkTimeoutSeconds: 5,
+        expiration: { maxEntries: 64, maxAgeSeconds: 24 * 60 * 60 },
+      },
+    },
+    {
+      urlPattern: ({ url }) => url.pathname.startsWith('/_next/static/'),
+      handler: 'StaleWhileRevalidate',
+      options: {
+        cacheName: 'next-static',
+        expiration: { maxEntries: 128, maxAgeSeconds: 7 * 24 * 60 * 60 },
+      },
+    },
+    {
+      urlPattern: ({ url }) =>
+        url.origin === 'https://fonts.googleapis.com' ||
+        url.origin === 'https://fonts.gstatic.com',
+      handler: 'StaleWhileRevalidate',
+      options: {
+        cacheName: 'google-fonts',
+        expiration: { maxEntries: 16, maxAgeSeconds: 30 * 24 * 60 * 60 },
+      },
+    },
+    {
+      urlPattern: ({ url }) => url.pathname.startsWith('/figures/') || url.pathname.endsWith('.svg'),
+      handler: 'StaleWhileRevalidate',
+      options: {
+        cacheName: 'images',
+        expiration: { maxEntries: 64, maxAgeSeconds: 30 * 24 * 60 * 60 },
+      },
+    },
+  ],
 })(nextConfig);
