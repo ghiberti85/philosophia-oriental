@@ -534,15 +534,17 @@ body::before {
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   gap: 12px;
 }
-/* Let the thinkers panel stretch its card grid into the shared row height,
-   so 4 sages fill the column instead of leaving it half-empty. */
+/* On desktop the thinkers panel lives in a fixed right column — force a
+   single-column layout so each card gets the full width and the epithet
+   line has room to breathe. The panel itself stretches to fill the row. */
 .panel--col {
   display: flex;
   flex-direction: column;
 }
 .panel--col .thinkers-row {
   flex: 1;
-  grid-auto-rows: minmax(64px, 1fr);
+  grid-template-columns: 1fr;
+  grid-auto-rows: minmax(56px, 1fr);
 }
 .thinker-card {
   display: flex;
