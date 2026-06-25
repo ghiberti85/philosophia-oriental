@@ -447,7 +447,7 @@ body::before {
 
 .stats-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 1fr; /* one stat per row on phones — no squeezed labels */
   gap: 12px;
 }
 @media (min-width: 560px) {
@@ -483,6 +483,26 @@ body::before {
 .stat__more {
   color: var(--accent);
   margin-top: 4px;
+}
+/* On phones the stats stack one per row; lay each out as a compact horizontal
+   strip (label · value) like the other cards instead of a tall block. */
+@media (max-width: 559px) {
+  .stat {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 4px 10px;
+  }
+  .stat > .mono {
+    flex: 1 1 auto;
+  }
+  .stat__val {
+    margin-left: auto;
+  }
+  .stat__more {
+    flex-basis: 100%;
+    margin-top: 2px;
+  }
 }
 
 /* ── Lists / tenets ──────────────────────────────────────────────────── */
