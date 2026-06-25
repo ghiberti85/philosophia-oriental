@@ -38,20 +38,35 @@ function glowTexture(): CanvasTexture {
 
 /** The school's ideogram (道, 儒, ॐ …) painted to a texture for a 3D billboard. */
 function glyphTexture(glyph: string): CanvasTexture {
-  const s = 200;
+  const s = 256;
   const c = document.createElement('canvas');
   c.width = c.height = s;
   const ctx = c.getContext('2d')!;
   ctx.clearRect(0, 0, s, s);
-  ctx.font = `700 ${Math.round(s * 0.64)}px "Noto Serif","Ma Shan Zheng",Georgia,serif`;
-  ctx.textAlign = 'center';
-  ctx.textBaseline = 'middle';
-  ctx.lineJoin = 'round';
+  const font = (px: number) => `700 ${px}px "Noto Serif","Ma Shan Zheng",Georgia,serif`;
+
+  // Fit the glyph's actual ink box inside a padded safe area. Tall marks like
+  // the Devanagari ॐ (moon + dot above the bar) would otherwise clip the frame.
+  const box = s * 0.68;
+  let px = s * 0.6;
+  ctx.font = font(px);
+  let m = ctx.measureText(glyph);
+  const w0 = (m.actualBoundingBoxLeft ?? 0) + (m.actualBoundingBoxRight ?? m.width);
+  const h0 = (m.actualBoundingBoxAscent ?? px * 0.8) + (m.actualBoundingBoxDescent ?? px * 0.2);
+  px = Math.max(8, px * Math.min(box / w0, box / h0));
+  ctx.font = font(px);
+  m = ctx.measureText(glyph);
+  const asc = m.actualBoundingBoxAscent ?? px * 0.8;
+  const desc = m.actualBoundingBoxDescent ?? px * 0.2;
   const cx = s / 2;
-  const cy = s / 2 + s * 0.02;
+  const cy = s / 2 + (asc - desc) / 2; // vertically centre the ink box
+
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'alphabetic';
+  ctx.lineJoin = 'round';
   ctx.shadowColor = 'rgba(0,0,0,0.55)';
   ctx.shadowBlur = 10;
-  ctx.lineWidth = s * 0.05;
+  ctx.lineWidth = px * 0.08;
   ctx.strokeStyle = 'rgba(18,13,7,0.7)';
   ctx.strokeText(glyph, cx, cy);
   ctx.shadowBlur = 0;
