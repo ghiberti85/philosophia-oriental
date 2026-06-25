@@ -101,7 +101,7 @@ export const dict = {
   regionJapan: { en: 'Japan', pt: 'Japão' },
   tweaks: { en: 'Display tweaks', pt: 'Ajustes de exibição' },
   readMore: { en: 'Read more', pt: 'Ler mais' },
-  inDepth: { en: 'In depth', pt: 'Em profundidade' },
+  inDepth: { en: 'Learn more', pt: 'Saiba mais' },
   statSagesInfo: {
     en: 'The thinkers who shaped this school — masters, disciples and heirs across the generations. Open any dossier to read their biography, contributions, sayings and remarkable facts.',
     pt: 'Os pensadores que moldaram esta escola — mestres, discípulos e herdeiros através das gerações. Abra qualquer dossiê para ler biografia, contribuições, ditos e fatos marcantes.',
