@@ -1,10 +1,21 @@
 'use client';
 
-import { OrbitControls, QuadraticBezierLine, Stars } from '@react-three/drei';
+import { OrbitControls, QuadraticBezierLine } from '@react-three/drei';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { Bloom, EffectComposer, Vignette } from '@react-three/postprocessing';
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { AdditiveBlending, CanvasTexture, Group, Mesh, Sprite, Vector3 } from 'three';
+import {
+  AdditiveBlending,
+  BufferAttribute,
+  BufferGeometry,
+  CanvasTexture,
+  Group,
+  Mesh,
+  Points,
+  ShaderMaterial,
+  Sprite,
+  Vector3,
+} from 'three';
 import { getSchool, schools } from '@/data/schools';
 import type { RelationType } from '@/data/types';
 import { buildGraph, isIncident } from '@/lib/graph';
@@ -129,6 +140,91 @@ function Rig({ targetPos, animate }: { targetPos: [number, number, number]; anim
   return null;
 }
 
+const TWINKLE_VERT = `
+  attribute float twinkleSpeed;
+  attribute float twinklePhase;
+  attribute float twinkleBase;
+  uniform float uTime;
+  varying float vAlpha;
+  void main() {
+    float flicker = twinkleSpeed > 0.0
+      ? twinkleBase + (1.0 - twinkleBase) * (0.5 + 0.5 * sin(uTime * twinkleSpeed + twinklePhase))
+      : 1.0;
+    vAlpha = flicker;
+    vec4 mvPos = modelViewMatrix * vec4(position, 1.0);
+    gl_PointSize = 1.4 * (300.0 / -mvPos.z);
+    gl_Position = projectionMatrix * mvPos;
+  }
+`;
+const TWINKLE_FRAG = `
+  varying float vAlpha;
+  void main() {
+    float d = length(gl_PointCoord - vec2(0.5));
+    if (d > 0.5) discard;
+    float edge = 1.0 - smoothstep(0.2, 0.5, d);
+    gl_FragColor = vec4(1.0, 1.0, 1.0, edge * vAlpha);
+  }
+`;
+
+function TwinklingStars({ count, radius, animate }: { count: number; radius: number; animate: boolean }) {
+  const matRef = useRef<ShaderMaterial>(null);
+  const geo = useMemo(() => {
+    const g = new BufferGeometry();
+    const pos = new Float32Array(count * 3);
+    const speeds = new Float32Array(count);
+    const phases = new Float32Array(count);
+    const bases = new Float32Array(count);
+    for (let i = 0; i < count; i++) {
+      // Distribute randomly inside a sphere shell
+      const theta = Math.random() * Math.PI * 2;
+      const phi = Math.acos(2 * Math.random() - 1);
+      const r = radius * (0.6 + Math.random() * 0.4);
+      pos[i * 3] = r * Math.sin(phi) * Math.cos(theta);
+      pos[i * 3 + 1] = r * Math.sin(phi) * Math.sin(theta);
+      pos[i * 3 + 2] = r * Math.cos(phi);
+
+      // ~40 % twinkle fast, ~30 % twinkle slow, ~30 % static
+      const roll = Math.random();
+      if (roll < 0.4) {
+        speeds[i] = 1.2 + Math.random() * 2.8; // fast
+        bases[i] = 0.2 + Math.random() * 0.3;
+      } else if (roll < 0.7) {
+        speeds[i] = 0.3 + Math.random() * 0.8; // slow
+        bases[i] = 0.5 + Math.random() * 0.3;
+      } else {
+        speeds[i] = 0.0; // static
+        bases[i] = 1.0;
+      }
+      phases[i] = Math.random() * Math.PI * 2;
+    }
+    g.setAttribute('position', new BufferAttribute(pos, 3));
+    g.setAttribute('twinkleSpeed', new BufferAttribute(speeds, 1));
+    g.setAttribute('twinklePhase', new BufferAttribute(phases, 1));
+    g.setAttribute('twinkleBase', new BufferAttribute(bases, 1));
+    return g;
+  }, [count, radius]);
+
+  useFrame(({ clock }) => {
+    if (matRef.current && animate) {
+      matRef.current.uniforms.uTime.value = clock.getElapsedTime();
+    }
+  });
+
+  return (
+    <points geometry={geo}>
+      <shaderMaterial
+        ref={matRef}
+        vertexShader={TWINKLE_VERT}
+        fragmentShader={TWINKLE_FRAG}
+        uniforms={{ uTime: { value: 0 } }}
+        transparent
+        depthWrite={false}
+        blending={AdditiveBlending}
+      />
+    </points>
+  );
+}
+
 /** Slowly drifting starfield with a faint nebula for depth. */
 function Sky({ animate, mobile }: { animate: boolean; mobile: boolean }) {
   const ref = useRef<Group>(null);
@@ -161,15 +257,7 @@ function Sky({ animate, mobile }: { animate: boolean; mobile: boolean }) {
           />
         </sprite>
       ))}
-      <Stars
-        radius={42}
-        depth={32}
-        count={mobile ? 900 : 1800}
-        factor={3.2}
-        saturation={0}
-        fade
-        speed={animate ? 0.6 : 0}
-      />
+      <TwinklingStars count={mobile ? 900 : 1800} radius={42} animate={animate} />
     </group>
   );
 }
