@@ -484,24 +484,29 @@ body::before {
   color: var(--accent);
   margin-top: 4px;
 }
-/* On phones the stats stack one per row; lay each out as a compact horizontal
-   strip (label · value) like the other cards instead of a tall block. */
+/* On phones the stats stack one per row. Give each a clean two-line layout:
+   the category label on its own line (header), then the value + unit on the
+   left of the next line with the "read more" call-to-action on the right. */
 @media (max-width: 559px) {
   .stat {
     flex-direction: row;
     flex-wrap: wrap;
     align-items: baseline;
-    gap: 4px 10px;
+    column-gap: 10px;
+    row-gap: 8px;
   }
-  .stat > .mono {
-    flex: 1 1 auto;
+  .stat > .mono:first-child {
+    flex: 1 1 100%; /* category label takes the full first line */
   }
   .stat__val {
-    margin-left: auto;
+    flex: 0 0 auto;
+  }
+  .stat__unit {
+    flex: 0 1 auto;
   }
   .stat__more {
-    flex-basis: 100%;
-    margin-top: 2px;
+    margin-left: auto; /* CTA hugs the right edge of the value line */
+    margin-top: 0;
   }
 }
 
