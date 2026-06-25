@@ -10,6 +10,7 @@ import {
   DoubleSide,
   type Mesh,
   type MeshStandardMaterial,
+  type RingGeometry,
   type Sprite,
   Vector3,
 } from 'three';
@@ -81,6 +82,7 @@ export function GraphNode({
   const core = useRef<Mesh>(null);
   const shell = useRef<Mesh>(null);
   const ring = useRef<Mesh>(null);
+  const ringGeom = useRef<RingGeometry>(null);
   const halo = useRef<Sprite>(null);
   const glyphSprite = useRef<Sprite>(null);
   const grow = useRef(selected ? 1.35 : 1);
@@ -137,11 +139,16 @@ export function GraphNode({
       (shell.current.material as MeshStandardMaterial).opacity = (dimmed ? 0.05 : 0.14) * intro;
     }
     if (ring.current) {
-      ring.current.scale.setScalar(intro);
+      ring.current.scale.setScalar(1);
       ring.current.lookAt(camera.position);
       if (animate) ring.current.rotateZ(t * 0.5);
       (ring.current.material as unknown as { opacity: number }).opacity =
-        (dimmed ? 0.12 : active ? 0.85 : 0.4) * intro;
+        dimmed ? 0.12 : active ? 0.85 : 0.4;
+      // Ensō "brush stroke": reveal the ring's triangles along its arc on intro.
+      if (ringGeom.current?.index) {
+        const total = ringGeom.current.index.count;
+        ringGeom.current.setDrawRange(0, Math.max(0, Math.floor(total * intro)));
+      }
     }
     if (halo.current) {
       const hs = (active ? 2.6 : 1.9) * Math.max(0.6, scale);
@@ -225,7 +232,7 @@ export function GraphNode({
 
       {/* Open ensō ring */}
       <mesh ref={ring} raycast={noRaycast}>
-        <ringGeometry args={[0.6, 0.7, 48, 1, 0, Math.PI * 1.8]} />
+        <ringGeometry ref={ringGeom} args={[0.6, 0.7, 48, 1, 0, Math.PI * 1.8]} />
         <meshBasicMaterial
           color={node.accent}
           transparent

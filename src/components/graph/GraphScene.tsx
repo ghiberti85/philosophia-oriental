@@ -2,9 +2,9 @@
 
 import { OrbitControls, QuadraticBezierLine, Stars } from '@react-three/drei';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
-import { Bloom, EffectComposer, Vignette } from '@react-three/postprocessing';
+import { Bloom, DepthOfField, EffectComposer, Vignette } from '@react-three/postprocessing';
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { Group, Mesh, Vector3 } from 'three';
+import { AdditiveBlending, CanvasTexture, Group, Mesh, Sprite, Vector3 } from 'three';
 import { getSchool, schools } from '@/data/schools';
 import type { RelationType } from '@/data/types';
 import { buildGraph, isIncident } from '@/lib/graph';
@@ -28,13 +28,33 @@ function arcControl(a: [number, number, number], b: [number, number, number]): [
   return [mx * push, my * push, mz * push];
 }
 
-/** A glowing mote of "energy" travelling along an edge's arc. */
-function EdgePulse({
+/** Soft radial sprite, used for the nebula clouds behind the constellation. */
+let _cloud: CanvasTexture | null = null;
+function cloudTexture(): CanvasTexture {
+  if (_cloud) return _cloud;
+  const s = 128;
+  const c = document.createElement('canvas');
+  c.width = c.height = s;
+  const ctx = c.getContext('2d')!;
+  const g = ctx.createRadialGradient(s / 2, s / 2, 0, s / 2, s / 2, s / 2);
+  g.addColorStop(0, 'rgba(255,255,255,0.55)');
+  g.addColorStop(0.4, 'rgba(255,255,255,0.18)');
+  g.addColorStop(1, 'rgba(255,255,255,0)');
+  ctx.fillStyle = g;
+  ctx.beginPath();
+  ctx.arc(s / 2, s / 2, s / 2, 0, Math.PI * 2);
+  ctx.fill();
+  _cloud = new CanvasTexture(c);
+  return _cloud;
+}
+
+/** A stream of "chi" motes flowing along an edge in the source→target direction. */
+function ChiStream({
   a,
   b,
   control,
   color,
-  phase,
+  count,
   incident,
   animate,
 }: {
@@ -42,30 +62,39 @@ function EdgePulse({
   b: [number, number, number];
   control: [number, number, number];
   color: string;
-  phase: number;
+  count: number;
   incident: boolean;
   animate: boolean;
 }) {
-  const ref = useRef<Mesh>(null);
+  const refs = useRef<(Mesh | null)[]>([]);
   const va = useMemo(() => new Vector3(...a), [a]);
   const vb = useMemo(() => new Vector3(...b), [b]);
   const vc = useMemo(() => new Vector3(...control), [control]);
   useFrame(({ clock }) => {
-    if (!ref.current) return;
-    const f = animate ? (clock.getElapsedTime() * 0.22 + phase) % 1 : 0.5;
-    const omt = 1 - f;
-    // Quadratic Bézier B(f) = (1-f)²A + 2(1-f)f·C + f²B
-    ref.current.position.set(
-      omt * omt * va.x + 2 * omt * f * vc.x + f * f * vb.x,
-      omt * omt * va.y + 2 * omt * f * vc.y + f * f * vb.y,
-      omt * omt * va.z + 2 * omt * f * vc.z + f * f * vb.z,
-    );
+    const t = clock.getElapsedTime();
+    for (let i = 0; i < count; i++) {
+      const m = refs.current[i];
+      if (!m) continue;
+      const phase = i / count;
+      const f = animate ? (t * 0.22 + phase) % 1 : (i + 0.5) / count;
+      const omt = 1 - f;
+      // Quadratic Bézier B(f) = (1-f)²A + 2(1-f)f·C + f²B
+      m.position.set(
+        omt * omt * va.x + 2 * omt * f * vc.x + f * f * vb.x,
+        omt * omt * va.y + 2 * omt * f * vc.y + f * f * vb.y,
+        omt * omt * va.z + 2 * omt * f * vc.z + f * f * vb.z,
+      );
+    }
   });
   return (
-    <mesh ref={ref}>
-      <sphereGeometry args={[incident ? 0.1 : 0.07, 12, 12]} />
-      <meshBasicMaterial color={color} transparent opacity={incident ? 1 : 0.7} />
-    </mesh>
+    <>
+      {Array.from({ length: count }).map((_, i) => (
+        <mesh key={i} ref={(el) => { refs.current[i] = el; }}>
+          <sphereGeometry args={[incident ? 0.09 : 0.06, 10, 10]} />
+          <meshBasicMaterial color={color} transparent opacity={incident ? 1 : 0.6} />
+        </mesh>
+      ))}
+    </>
   );
 }
 
@@ -100,15 +129,47 @@ function Rig({ targetPos, animate }: { targetPos: [number, number, number]; anim
   return null;
 }
 
-/** Slowly drifting starfield for depth (visible mainly in dark mode). */
-function DriftingStars({ animate }: { animate: boolean }) {
+/** Slowly drifting starfield with a faint nebula for depth. */
+function Sky({ animate, mobile }: { animate: boolean; mobile: boolean }) {
   const ref = useRef<Group>(null);
+  const cloud = useMemo(() => cloudTexture(), []);
+  const clouds = useMemo(
+    () =>
+      (
+        [
+          { pos: [-14, 8, -20], color: '#d9ad4f', scale: 26 },
+          { pos: [16, -6, -22], color: '#5fa97f', scale: 30 },
+          { pos: [4, 14, -26], color: '#6a6a9a', scale: 24 },
+        ] as const
+      ).slice(0, mobile ? 2 : 3),
+    [mobile],
+  );
   useFrame((_, delta) => {
     if (ref.current && animate) ref.current.rotation.y += delta * 0.01;
   });
   return (
     <group ref={ref}>
-      <Stars radius={40} depth={30} count={1400} factor={3} saturation={0} fade speed={0.4} />
+      {clouds.map((c, i) => (
+        <sprite key={i} position={c.pos} scale={[c.scale, c.scale, 1]} raycast={() => null}>
+          <spriteMaterial
+            map={cloud}
+            color={c.color}
+            transparent
+            opacity={mobile ? 0.04 : 0.06}
+            depthWrite={false}
+            blending={AdditiveBlending}
+          />
+        </sprite>
+      ))}
+      <Stars
+        radius={42}
+        depth={32}
+        count={mobile ? 900 : 1800}
+        factor={3.2}
+        saturation={0}
+        fade
+        speed={animate ? 0.6 : 0}
+      />
     </group>
   );
 }
@@ -118,11 +179,13 @@ function Constellation({
   onSelect,
   locale,
   animate,
+  mobile,
 }: {
   selectedSlug: string;
   onSelect: (slug: string) => void;
   locale: Locale;
   animate: boolean;
+  mobile: boolean;
 }) {
   const graph = useMemo(() => buildGraph(schools), []);
   const posBySlug = useMemo(() => {
@@ -142,12 +205,13 @@ function Constellation({
 
   return (
     <group>
-      {graph.edges.map((edge, i) => {
+      {graph.edges.map((edge) => {
         const a = posBySlug.get(edge.source);
         const b = posBySlug.get(edge.target);
         if (!a || !b) return null;
         const incident = isIncident(edge, selectedSlug);
         const control = arcControl(a, b);
+        const count = incident ? (mobile ? 2 : 3) : mobile ? 1 : 2;
         return (
           <group key={`${edge.source}-${edge.target}`}>
             <QuadraticBezierLine
@@ -162,12 +226,12 @@ function Constellation({
               dashSize={0.3}
               gapSize={0.18}
             />
-            <EdgePulse
+            <ChiStream
               a={a}
               b={b}
               control={control}
               color={RELATION_COLOR[edge.type]}
-              phase={(i * 0.37) % 1}
+              count={count}
               incident={incident}
               animate={animate}
             />
@@ -213,6 +277,17 @@ export default function GraphScene({
     const graph = buildGraph(schools);
     return graph.nodes.find((n) => n.slug === selectedSlug)?.position ?? [0, 0, 0];
   }, [selectedSlug]);
+  const focusTarget = useMemo(() => new Vector3(...selectedPos), [selectedPos]);
+
+  // Lighter effect set on small screens (no DoF, fewer stars/motes/clouds).
+  const [mobile, setMobile] = useState(false);
+  useEffect(() => {
+    const mq = window.matchMedia('(max-width: 768px)');
+    const update = () => setMobile(mq.matches);
+    update();
+    mq.addEventListener('change', update);
+    return () => mq.removeEventListener('change', update);
+  }, []);
 
   // Gentle idle auto-rotation that pauses while the user is dragging and
   // resumes a few seconds after they let go.
@@ -238,8 +313,14 @@ export default function GraphScene({
       <pointLight position={[10, 10, 10]} intensity={0.8} />
       <pointLight position={[-10, -6, -8]} intensity={0.4} color="#d9ad4f" />
 
-      <DriftingStars animate={animate} />
-      <Constellation selectedSlug={selectedSlug} onSelect={onSelect} locale={locale} animate={animate} />
+      <Sky animate={animate} mobile={mobile} />
+      <Constellation
+        selectedSlug={selectedSlug}
+        onSelect={onSelect}
+        locale={locale}
+        animate={animate}
+        mobile={mobile}
+      />
       <Rig targetPos={selectedPos} animate={animate} />
 
       <OrbitControls
@@ -268,6 +349,12 @@ export default function GraphScene({
           luminanceSmoothing={0.9}
           mipmapBlur
         />
+        {/* Cinematic focus on the selected node — desktop only (DoF is costly). */}
+        {!mobile && animate ? (
+          <DepthOfField target={focusTarget} focalLength={0.015} bokehScale={2.2} height={480} />
+        ) : (
+          <></>
+        )}
         <Vignette eskil={false} offset={0.32} darkness={dark ? 0.7 : 0.45} />
       </EffectComposer>
     </Canvas>
