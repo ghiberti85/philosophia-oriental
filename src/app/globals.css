@@ -56,6 +56,16 @@
   --accent: oklch(from var(--accent-base, #c2922f) min(0.8, calc(l + 0.14)) calc(c * 1.02) h);
 }
 
+/* The dossier carries each school's colour. --accent-base is set inline on
+   .dash-wrap per selected school, but --accent is resolved at :root, so it must
+   be re-declared here to recompute from the school hue (matching the graph). */
+.dash-wrap {
+  --accent: var(--accent-base, #c2922f);
+}
+.dark .dash-wrap {
+  --accent: oklch(from var(--accent-base, #c2922f) min(0.8, calc(l + 0.14)) calc(c * 1.02) h);
+}
+
 * {
   box-sizing: border-box;
 }

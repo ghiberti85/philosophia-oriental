@@ -2,7 +2,7 @@
 
 import { OrbitControls, QuadraticBezierLine, Stars } from '@react-three/drei';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
-import { Bloom, DepthOfField, EffectComposer, Vignette } from '@react-three/postprocessing';
+import { Bloom, EffectComposer, Vignette } from '@react-three/postprocessing';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { AdditiveBlending, CanvasTexture, Group, Mesh, Sprite, Vector3 } from 'three';
 import { getSchool, schools } from '@/data/schools';
@@ -277,7 +277,6 @@ export default function GraphScene({
     const graph = buildGraph(schools);
     return graph.nodes.find((n) => n.slug === selectedSlug)?.position ?? [0, 0, 0];
   }, [selectedSlug]);
-  const focusTarget = useMemo(() => new Vector3(...selectedPos), [selectedPos]);
 
   // Lighter effect set on small screens (no DoF, fewer stars/motes/clouds).
   const [mobile, setMobile] = useState(false);
@@ -349,12 +348,6 @@ export default function GraphScene({
           luminanceSmoothing={0.9}
           mipmapBlur
         />
-        {/* Cinematic focus on the selected node — desktop only (DoF is costly). */}
-        {!mobile && animate ? (
-          <DepthOfField target={focusTarget} focalLength={0.015} bokehScale={2.2} height={480} />
-        ) : (
-          <></>
-        )}
         <Vignette eskil={false} offset={0.32} darkness={dark ? 0.7 : 0.45} />
       </EffectComposer>
     </Canvas>
