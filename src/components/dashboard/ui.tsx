@@ -8,21 +8,31 @@ import {
   type ReactNode,
 } from 'react';
 
-/** Roman numerals for the stat readouts. */
-export function roman(num: number): string {
-  if (!num || num < 1 || num > 3999) return String(num);
-  const map: [number, string][] = [
-    [1000, 'M'], [900, 'CM'], [500, 'D'], [400, 'CD'], [100, 'C'], [90, 'XC'],
-    [50, 'L'], [40, 'XL'], [10, 'X'], [9, 'IX'], [5, 'V'], [4, 'IV'], [1, 'I'],
-  ];
+/** CJK (Chinese/Japanese) numerals for the stat readouts — 三, 十一, 二十… */
+export function cjkNum(num: number): string {
+  const n = Math.floor(num);
+  if (!Number.isFinite(n) || n < 0) return String(num);
+  const D = ['〇', '一', '二', '三', '四', '五', '六', '七', '八', '九'];
+  const U = ['', '十', '百', '千'];
+  if (n === 0) return D[0];
+  if (n > 9999) return String(n); // counts here never reach this; safe fallback
+  const digits = String(n).split('').map(Number);
   let out = '';
-  let n = num;
-  for (const [v, s] of map) {
-    while (n >= v) {
-      out += s;
-      n -= v;
+  let pendingZero = false;
+  digits.forEach((d, i) => {
+    const pos = digits.length - 1 - i; // 0=ones, 1=tens, 2=hundreds…
+    if (d === 0) {
+      pendingZero = true;
+    } else {
+      if (pendingZero) {
+        out += D[0];
+        pendingZero = false;
+      }
+      out += D[d] + U[pos];
     }
-  }
+  });
+  // 一十… reads as 十… in the teens (10 → 十, 11 → 十一).
+  if (out.startsWith('一十')) out = out.slice(1);
   return out;
 }
 
