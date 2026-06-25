@@ -54,16 +54,10 @@ export function GraphDashboard({ locale }: { locale: Locale }) {
 
   const select = useCallback((slug: string) => {
     if (!getSchool(slug)) return;
+    // Just update the selection — never auto-scroll. Selecting a node should keep
+    // the user on the constellation; the dossier updates in place below.
     setSelectedSlug(slug);
-    // On phones, jumping to the dossier yanks the user out of the constellation
-    // they're exploring — keep them on the graph and let them scroll when ready.
-    const onPhone = window.matchMedia('(max-width: 768px)').matches;
-    if (onPhone) return;
-    // Smoothly reveal the dossier below the constellation.
-    requestAnimationFrame(() => {
-      panelsRef.current?.scrollIntoView({ behavior: reducedMotion ? 'auto' : 'smooth', block: 'start' });
-    });
-  }, [reducedMotion]);
+  }, []);
 
   const school = getSchool(selectedSlug) ?? schools[0];
 
