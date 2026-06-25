@@ -12,7 +12,7 @@ import { buildGraph, neighbors, edgeType } from '@/lib/graph';
 import { t, type Locale } from '@/lib/i18n';
 import { PhilosopherCard, PhilosopherModal } from './Philosopher';
 import { QuizModal } from './QuizModal';
-import { Brackets, Icon, Modal, Panel, roman } from './ui';
+import { Brackets, Icon, Modal, Panel, cjkNum } from './ui';
 
 const graph = buildGraph(schools);
 
@@ -70,10 +70,10 @@ function Stats({
   onOpen: (kind: StatKind) => void;
 }) {
   const items: { kind: StatKind; glyph: string; label: string; val: string; unit: string }[] = [
-    { kind: 'sages', glyph: '◉', label: t(dict.sages, locale), val: roman(school.philosopherSlugs.length), unit: t(dict.thinkers, locale) },
-    { kind: 'tenets', glyph: '▣', label: t(dict.coreTenets, locale), val: roman(school.coreIdeas.en.length), unit: t(dict.principles, locale) },
-    { kind: 'quiz', glyph: '◈', label: t(dict.quizPool, locale), val: roman(poolCount), unit: t(dict.questionsInPool, locale) },
-    { kind: 'bibliography', glyph: '◧', label: t(dict.bibliography, locale), val: roman(school.keyWorks?.length ?? 0), unit: t(dict.keyWorks, locale) },
+    { kind: 'sages', glyph: '◉', label: t(dict.sages, locale), val: cjkNum(school.philosopherSlugs.length), unit: t(dict.thinkers, locale) },
+    { kind: 'tenets', glyph: '▣', label: t(dict.coreTenets, locale), val: cjkNum(school.coreIdeas.en.length), unit: t(dict.principles, locale) },
+    { kind: 'quiz', glyph: '◈', label: t(dict.quizPool, locale), val: cjkNum(poolCount), unit: t(dict.questionsInPool, locale) },
+    { kind: 'bibliography', glyph: '◧', label: t(dict.bibliography, locale), val: cjkNum(school.keyWorks?.length ?? 0), unit: t(dict.keyWorks, locale) },
   ];
   return (
     <Panel area="stats" glyph="▣" label={t(dict.schoolReadout, locale)} className="reveal" style={{ '--d': '80ms' } as CSSProperties}>
@@ -81,7 +81,7 @@ function Stats({
         {items.map((s) => (
           <button className="stat" key={s.kind} onClick={() => onOpen(s.kind)}>
             <span className="mono" style={{ color: 'var(--accent)' }}>{s.glyph} {s.label}</span>
-            <span className="stat__val roman">{s.val}</span>
+            <span className="stat__val">{s.val}</span>
             <span className="stat__unit">{s.unit}</span>
             <span className="stat__more mono">{t(dict.readMore, locale)} →</span>
           </button>
@@ -96,7 +96,7 @@ function Stats({
 function Tenets({ school, locale, onIdea }: { school: School; locale: Locale; onIdea: (i: number) => void }) {
   const ideas = t(school.coreIdeas, locale);
   return (
-    <Panel area="ideas" glyph="◉" label={t(dict.coreIdeas, locale)} count={roman(ideas.length)} className="reveal" style={{ '--d': '140ms' } as CSSProperties}>
+    <Panel area="ideas" glyph="◉" label={t(dict.coreIdeas, locale)} count={cjkNum(ideas.length)} className="reveal" style={{ '--d': '140ms' } as CSSProperties}>
       <ul className="list-clean tenets">
         {ideas.map((idea, i) => (
           <li key={i}>
@@ -117,7 +117,7 @@ function Tenets({ school, locale, onIdea }: { school: School; locale: Locale; on
 function Thinkers({ school, locale, onOpen }: { school: School; locale: Locale; onOpen: (p: Philosopher) => void }) {
   const list = school.philosopherSlugs.map(getPhilosopher).filter((p): p is Philosopher => Boolean(p));
   return (
-    <Panel area="thinkers" glyph="◈" label={t(dict.keyThinkers, locale)} count={roman(list.length)} className="reveal panel--col" style={{ '--d': '200ms' } as CSSProperties}>
+    <Panel area="thinkers" glyph="◈" label={t(dict.keyThinkers, locale)} count={cjkNum(list.length)} className="reveal panel--col" style={{ '--d': '200ms' } as CSSProperties}>
       <div className="thinkers-row">
         {list.map((p) => (
           <PhilosopherCard key={p.slug} p={p} locale={locale} onOpen={onOpen} />
@@ -172,7 +172,7 @@ function Connections({
 }) {
   const related = neighbors(graph, school.slug);
   return (
-    <Panel area="connections" glyph="✦" label={t(dict.connections, locale)} count={roman(related.length)} className="reveal" style={{ '--d': '320ms' } as CSSProperties}>
+    <Panel area="connections" glyph="✦" label={t(dict.connections, locale)} count={cjkNum(related.length)} className="reveal" style={{ '--d': '320ms' } as CSSProperties}>
       <p className="lead" style={{ marginBottom: 14 }}>{t(dict.connectionsPanel, locale)}</p>
       <div className="conn-grid">
         {related.map((slug) => {
@@ -281,7 +281,7 @@ function StatModal({
                   <li key={p.slug}>
                     <span className="mk">{String(i + 1).padStart(2, '0')}</span>
                     <span style={{ flex: 1 }}>{t(p.name, locale)}</span>
-                    <span className="mono" style={{ color: 'var(--accent)' }}>{roman(getQuestionsFor(p.slug).length)}</span>
+                    <span className="mono" style={{ color: 'var(--accent)' }}>{cjkNum(getQuestionsFor(p.slug).length)}</span>
                   </li>
                 ))}
               </ul>
