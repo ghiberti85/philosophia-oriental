@@ -11,9 +11,7 @@ import {
   CanvasTexture,
   Group,
   Mesh,
-  Points,
   ShaderMaterial,
-  Sprite,
   Vector3,
 } from 'three';
 import { getSchool, schools } from '@/data/schools';

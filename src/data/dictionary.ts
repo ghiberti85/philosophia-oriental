@@ -85,8 +85,6 @@ export const dict = {
   },
   goHome: { en: 'Return home', pt: 'Voltar ao início' },
   close: { en: 'Close', pt: 'Fechar' },
-  about: { en: 'About', pt: 'Sobre' },
-  readBio: { en: 'Full biography', pt: 'Biografia completa' },
   readSchool: { en: 'Read', pt: 'Ler' },
   sages: { en: 'Sages', pt: 'Sábios' },
   thinkers: { en: 'sages', pt: 'sábios' },
@@ -99,7 +97,6 @@ export const dict = {
   regionChina: { en: 'China', pt: 'China' },
   regionIndia: { en: 'India', pt: 'Índia' },
   regionJapan: { en: 'Japan', pt: 'Japão' },
-  tweaks: { en: 'Display tweaks', pt: 'Ajustes de exibição' },
   readMore: { en: 'Read more', pt: 'Ler mais' },
   inDepth: { en: 'Learn more', pt: 'Saiba mais' },
   statSagesInfo: {
@@ -136,11 +133,9 @@ export const dict = {
     pt: 'Os fios que ligam esta escola ao resto da constelação — linhagem, influência, síntese e dissidência. Selecione um para viajar até ele.',
   },
   relInfluence: { en: 'Influences', pt: 'Influencia' },
-  relInfluencedBy: { en: 'Influenced by', pt: 'Influenciada por' },
   relOpposition: { en: 'In tension with', pt: 'Em tensão com' },
   relSynthesis: { en: 'Synthesises', pt: 'Sintetiza' },
   relLineage: { en: 'Lineage', pt: 'Linhagem' },
-  learnMore: { en: 'Learn more', pt: 'Saiba mais' },
   travelTo: { en: 'Travel to', pt: 'Viajar para' },
   legendTitle: { en: 'Threads', pt: 'Fios' },
   legendLineage: { en: 'Lineage', pt: 'Linhagem' },
@@ -148,5 +143,3 @@ export const dict = {
   legendSynthesis: { en: 'Synthesis', pt: 'Síntese' },
   legendOpposition: { en: 'Opposition', pt: 'Oposição' },
 } satisfies Record<string, Localized>;
-
-export type DictKey = keyof typeof dict;
