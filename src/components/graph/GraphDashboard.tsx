@@ -93,6 +93,7 @@ export function GraphDashboard({ locale }: { locale: Locale }) {
                 dark={resolvedTheme === 'dark'}
               />
               <span className="graph-hint mono" aria-hidden="true">{t(dict.graphHint, locale)}</span>
+              <span className="graph-motif" aria-hidden="true" />
             </>
           ) : (
             <GraphFallback selectedSlug={selectedSlug} onSelect={select} locale={locale} />
