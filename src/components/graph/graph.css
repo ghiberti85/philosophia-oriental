@@ -222,3 +222,104 @@
 .graph-legend__label {
   color: var(--fg-muted);
 }
+
+/* ── Minimap ──────────────────────────────────────────────────────────── */
+.graph-minimap {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+}
+.graph-minimap svg {
+  background: color-mix(in oklch, var(--bg-panel) 70%, transparent);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  display: block;
+}
+.minimap-toggle {
+  background: color-mix(in oklch, var(--bg-panel) 80%, transparent);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--fg-muted);
+  cursor: pointer;
+  font-size: 0.7rem;
+  padding: 2px 6px;
+  line-height: 1.4;
+}
+.minimap-toggle:hover {
+  color: var(--fg);
+}
+
+/* ── Command Palette ──────────────────────────────────────────────────── */
+.modal--palette .modal__box {
+  width: min(600px, 92vw);
+  max-height: 420px;
+  padding: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.palette-input-wrap {
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--border);
+}
+.palette-input {
+  width: 100%;
+  border: none;
+  background: transparent;
+  color: var(--fg);
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  outline: none;
+}
+.palette-input::placeholder {
+  color: var(--fg-muted);
+}
+.palette-results {
+  overflow-y: auto;
+  padding: 8px 0 12px;
+}
+.palette-group {
+  color: var(--fg-muted);
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin: 10px 16px 4px;
+}
+.palette-empty {
+  color: var(--fg-muted);
+  text-align: center;
+  padding: 24px 0;
+  margin: 0;
+  font-size: 0.85rem;
+}
+.palette-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 8px 16px;
+  border: none;
+  background: transparent;
+  color: var(--fg);
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.12s;
+}
+.palette-item.is-active {
+  background: color-mix(in oklch, var(--accent) 12%, transparent);
+}
+.palette-item__emblem {
+  font-size: 1.1rem;
+  line-height: 1;
+  color: var(--accent);
+  flex: 0 0 1.4rem;
+  text-align: center;
+}
+.palette-item__label {
+  font-size: 0.92rem;
+}

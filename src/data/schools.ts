@@ -275,6 +275,86 @@ export const schools: School[] = [
     ],
   },
   {
+    slug: 'jainism',
+    name: { en: 'Jainism', pt: 'Jainismo' },
+    period: { en: '6th century BC →', pt: 'Século VI a.C. →' },
+    region: 'india',
+    emblem: 'ज',
+    tagline: {
+      en: 'Harm no living being; the soul is its own liberator.',
+      pt: 'Não prejudiques nenhum ser vivo; a alma é sua própria libertadora.',
+    },
+    description: {
+      en: 'Jainism is one of the world\'s oldest living religions and philosophies, founded in its current form by Mahavira in the 6th century BC. Its bedrock is ahimsa — non-violence toward all living beings, down to the smallest insect — and the conviction that each soul is infinite in knowledge and bliss, temporarily bound by karmic matter. Liberation (moksha) is achieved not through divine grace but through the soul\'s own discipline: right knowledge, right faith and right conduct, the three jewels that dissolve karma and return the soul to its native splendour.',
+      pt: 'O jainismo é uma das mais antigas religiões e filosofias vivas do mundo, fundado em sua forma atual por Mahavira no século VI a.C. Seu alicerce é o ahimsa — a não-violência em relação a todos os seres vivos, até o menor inseto — e a convicção de que cada alma é infinita em conhecimento e beatitude, temporariamente presa pela matéria cármica. A libertação (moksha) não se alcança pela graça divina, mas pela própria disciplina da alma: conhecimento correto, fé correta e conduta correta, as três joias que dissolvem o karma e devolvem a alma ao seu esplendor original.',
+    },
+    coreIdeas: {
+      en: [
+        'Ahimsa: absolute non-violence toward every living being',
+        'Anekantavada: reality is many-sided; no single view is complete',
+        'Karma as a subtle substance that binds the soul through action',
+        'Moksha: the soul\'s liberation by its own effort, not divine grace',
+      ],
+      pt: [
+        'Ahimsa: não-violência absoluta em relação a todos os seres vivos',
+        'Anekantavada: a realidade é multifacetada; nenhuma visão é completa',
+        'Karma como substância sutil que aprisiona a alma pela ação',
+        'Moksha: a libertação da alma pelo próprio esforço, não pela graça divina',
+      ],
+    },
+    philosopherSlugs: ['mahavira', 'kundakunda', 'umasvati'],
+    relations: [
+      { to: 'buddhism', type: 'opposition' },
+      { to: 'vedanta', type: 'opposition' },
+    ],
+    accent: '#4a90a4',
+    keyWorks: [
+      { title: { en: 'Tattvartha Sutra', pt: 'Tattvartha Sutra' }, author: { en: 'Umasvati', pt: 'Umasvati' }, year: 'c. 2nd c. AD', note: { en: 'First systematic account of Jain philosophy', pt: 'Primeiro relato sistemático da filosofia jain' } },
+      { title: { en: 'Samayasara', pt: 'Samayasara' }, author: { en: 'Kundakunda', pt: 'Kundakunda' }, year: 'c. 2nd c. AD', note: { en: 'The soul in its pure, liberated nature', pt: 'A alma em sua natureza pura e liberta' } },
+      { title: { en: 'Acaranga Sutra', pt: 'Acaranga Sutra' }, author: { en: 'Jain tradition', pt: 'Tradição jain' }, year: 'c. 4th c. BC', note: { en: 'The oldest Jain canonical text', pt: 'O mais antigo texto canônico jain' } },
+    ],
+  },
+  {
+    slug: 'shintoism',
+    name: { en: 'Shintō', pt: 'Xintoísmo' },
+    period: { en: 'Antiquity →', pt: 'Antiguidade →' },
+    region: 'japan',
+    emblem: '神',
+    tagline: {
+      en: 'The kami dwell in all things; purity opens the path.',
+      pt: 'Os kami habitam todas as coisas; a pureza abre o caminho.',
+    },
+    description: {
+      en: 'Shintō, "the way of the kami," is Japan\'s indigenous spirituality — not a system of doctrine but a lived relationship with the sacred forces (kami) that dwell in nature, ancestors and the land itself. Its values are purity (harae), sincerity (makoto) and gratitude, expressed in ritual, festival and the careful maintenance of shrines. Shintō provided the spiritual vocabulary of Japanese identity for millennia and shaped poetry, the arts and the warrior ethic; its encounter with Buddhism produced the rich syncretic tradition of shinbutsu-shūgō.',
+      pt: 'O Xintoísmo, "o caminho dos kami", é a espiritualidade indígena do Japão — não um sistema de doutrina, mas uma relação vivida com as forças sagradas (kami) que habitam a natureza, os ancestrais e a própria terra. Seus valores são a pureza (harae), a sinceridade (makoto) e a gratidão, expressos no ritual, na festa e no cuidadoso trato dos santuários. O Xintoísmo forneceu o vocabulário espiritual da identidade japonesa por milênios e moldou a poesia, as artes e a ética guerreira; seu encontro com o budismo gerou a rica tradição sincrética do shinbutsu-shūgō.',
+    },
+    coreIdeas: {
+      en: [
+        'Kami: sacred powers dwelling in nature, ancestors and place',
+        'Makoto no kokoro: sincerity and purity of heart as the highest virtue',
+        'Harae: ritual purification that restores harmony with the sacred',
+        'Musubi: the creative, generative force that unites all living things',
+      ],
+      pt: [
+        'Kami: forças sagradas que habitam a natureza, os ancestrais e o lugar',
+        'Makoto no kokoro: a sinceridade e a pureza do coração como virtude máxima',
+        'Harae: a purificação ritual que restaura a harmonia com o sagrado',
+        'Musubi: a força criadora e geradora que une todos os seres vivos',
+      ],
+    },
+    philosopherSlugs: ['motoori-norinaga', 'hirata-atsutane', 'kitabatake-chikafusa'],
+    relations: [
+      { to: 'zen', type: 'synthesis' },
+      { to: 'bushido', type: 'influence' },
+    ],
+    accent: '#c94a2a',
+    keyWorks: [
+      { title: { en: 'Kojikiden', pt: 'Kojikiden' }, author: { en: 'Motoori Norinaga', pt: 'Motoori Norinaga' }, year: '1798', note: { en: '44-volume commentary on the Kojiki', pt: 'Comentário em 44 volumes sobre o Kojiki' } },
+      { title: { en: 'Kojiki', pt: 'Kojiki' }, author: { en: 'O no Yasumaro', pt: 'O no Yasumaro' }, year: '712', note: { en: 'Japan\'s oldest chronicle of the gods', pt: 'A mais antiga crônica japonesa dos deuses' } },
+      { title: { en: 'Jinnō Shōtōki', pt: 'Jinnō Shōtōki' }, author: { en: 'Kitabatake Chikafusa', pt: 'Kitabatake Chikafusa' }, year: '1339', note: { en: 'On the divine lineage of Japan\'s emperors', pt: 'Sobre a linhagem divina dos imperadores do Japão' } },
+    ],
+  },
+  {
     slug: 'bushido',
     name: { en: 'Bushidō', pt: 'Bushidō' },
     period: { en: '12th–19th century AD', pt: 'Séculos XII–XIX d.C.' },

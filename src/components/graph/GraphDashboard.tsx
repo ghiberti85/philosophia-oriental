@@ -10,8 +10,11 @@ import { getSchool, schools } from '@/data/schools';
 import { t, type Locale } from '@/lib/i18n';
 import { Topbar } from '@/components/Topbar';
 import { SchoolPanels } from '@/components/dashboard/SchoolPanels';
+import { CommandPalette } from '@/components/CommandPalette';
+import { buildGraph } from '@/lib/graph';
 import { GraphFallback } from './GraphFallback';
 import { GraphLegend } from './GraphLegend';
+import { GraphMinimap } from './GraphMinimap';
 
 // The WebGL scene never blocks first paint and is never server-rendered.
 const GraphScene = dynamic(() => import('./GraphScene'), {
@@ -20,6 +23,7 @@ const GraphScene = dynamic(() => import('./GraphScene'), {
 });
 
 const DEFAULT_SLUG = 'confucianism';
+const graph = buildGraph(schools);
 type View = 'graph' | 'list';
 
 /** Tracks the user's reduced-motion preference. */
@@ -41,10 +45,22 @@ export function GraphDashboard({ locale }: { locale: Locale }) {
   const [selectedSlug, setSelectedSlug] = useState(DEFAULT_SLUG);
   const [view, setView] = useState<View>('graph');
   const [mounted, setMounted] = useState(false);
+  const [paletteOpen, setPaletteOpen] = useState(false);
   const panelsRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setMounted(true);
+  }, []);
+
+  useEffect(() => {
+    function handleKey(e: KeyboardEvent) {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+        e.preventDefault();
+        setPaletteOpen((o) => !o);
+      }
+    }
+    window.addEventListener('keydown', handleKey);
+    return () => window.removeEventListener('keydown', handleKey);
   }, []);
 
   // Default keyboard/SR and reduced-motion users to the accessible list view.
@@ -64,6 +80,12 @@ export function GraphDashboard({ locale }: { locale: Locale }) {
   return (
     <div className="stage">
       <Topbar locale={locale} />
+      <CommandPalette
+        locale={locale}
+        onSelect={select}
+        open={paletteOpen}
+        onClose={() => setPaletteOpen(false)}
+      />
 
       <section className="graph-section" aria-label={t(dict.graphTitle, locale)}>
         <div className="graph-section__head">
@@ -92,6 +114,7 @@ export function GraphDashboard({ locale }: { locale: Locale }) {
               />
               <span className="graph-hint mono" aria-hidden="true">{t(dict.graphHint, locale)}</span>
               <span className="graph-motif" aria-hidden="true" />
+              <GraphMinimap graph={graph} selectedSlug={selectedSlug} onSelect={select} />
             </>
           ) : (
             <GraphFallback selectedSlug={selectedSlug} onSelect={select} locale={locale} />

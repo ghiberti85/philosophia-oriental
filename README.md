@@ -80,7 +80,7 @@ to add a school, sage, relation, quiz question or language.
 ## 🗺 Roadmap (Phase 2 — high "wow factor")
 
 **Shipped:** camera fly-to on selection · energy motes flowing along edges · bloom postprocessing ·
-drifting starfield · relation legend · ensō intro animation.
+drifting starfield with twinkling stars (custom GLSL shader) · relation legend · ensō intro animation.
 
 **Next:** DALL-E figures and scenes · procedural 3D busts on sage pages · relation minimap ·
 volumetric mist · sound · Vercel deploy with OG images.

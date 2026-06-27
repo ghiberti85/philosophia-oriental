@@ -69,6 +69,12 @@ and dashed by relation type, and orbit controls. Hovering or selecting a node
 highlights its incident edges and dims the rest. Auto-rotation and scale easing
 are disabled under `prefers-reduced-motion` (the scene then runs `frameloop="demand"`).
 
+The background `Sky` component layers translucent nebula sprites with a
+custom `TwinklingStars` — a `ShaderMaterial`-based `Points` mesh where
+per-vertex attributes (`twinkleSpeed`, `twinklePhase`, `twinkleBase`) drive
+independent GLSL flicker animations: ~40 % of stars flicker fast, ~30 % pulse
+slowly, and ~30 % remain static, creating natural variety at zero JS cost.
+
 ### Accessibility
 
 `GraphFallback` presents the same graph as schools grouped by region — native
