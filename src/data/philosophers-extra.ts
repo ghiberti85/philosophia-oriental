@@ -755,4 +755,302 @@ export const philosophersExtra: Philosopher[] = [
     },
     figureImage: '/figures/nitobe.svg',
   },
+
+  // ── Jainism ────────────────────────────────────────────────────────────
+  {
+    slug: 'mahavira',
+    name: { en: 'Mahavira', pt: 'Mahavira' },
+    years: { en: '599–527 BC', pt: '599–527 a.C.' },
+    birthplace: { en: 'Vaishali, ancient India', pt: 'Vaishali, Índia antiga' },
+    schoolSlugs: ['jainism'],
+    epithet: { en: 'The 24th Tirthankara', pt: 'O 24º Tirthankara' },
+    biography: {
+      en: [
+        'Vardhamana, known as Mahavira ("Great Hero"), was born a prince in the Kshatriya warrior caste near present-day Patna. At the age of thirty he renounced his kingdom and family to pursue ascetic liberation, wandering naked for twelve years through villages, forests and cremation grounds, enduring every hardship without complaint. He achieved kevala — omniscient enlightenment — beneath an Ashoka tree, and spent the remaining thirty years teaching the path of liberation.',
+        'Mahavira is regarded as the 24th and last Tirthankara ("ford-maker") of the current cosmic age — a being who has crossed the ocean of worldly existence and opens the way for others. He reorganised the earlier Jain community founded by Parshvanatha and systematised its ethics around the five great vows: ahimsa (non-violence), satya (truth), asteya (non-stealing), brahmacharya (celibacy) and aparigraha (non-possessiveness).',
+      ],
+      pt: [
+        'Vardhamana, conhecido como Mahavira ("Grande Herói"), nasceu príncipe na casta guerreira Kshatriya perto da atual Patna. Aos trinta anos renunciou ao reino e à família para buscar a libertação ascética, vagando nu por doze anos através de vilarejos, florestas e crematorios, suportando todo sofrimento sem se queixar. Alcançou o kevala — a iluminação onisciente — sob uma árvore Ashoka e passou os trinta anos restantes ensinando o caminho da libertação.',
+        'Mahavira é reverenciado como o 24º e último Tirthankara ("construtor de vau") da era cósmica atual — um ser que atravessou o oceano da existência mundana e abre o caminho para os outros. Reorganizou a comunidade jain anterior fundada por Parshvanatha e sistematizou sua ética em torno dos cinco grandes votos: ahimsa (não-violência), satya (verdade), asteya (não roubar), brahmacharya (celibato) e aparigraha (não-possessividade).',
+      ],
+    },
+    contributions: {
+      en: [
+        'Systematised the five great vows (Mahavratas) that define Jain monastic life',
+        'Established the fourfold Jain community of monks, nuns, laymen and laywomen',
+        'Taught anekantavada (many-sidedness of reality), a foundational contribution to Indian logic',
+      ],
+      pt: [
+        'Sistematizou os cinco grandes votos (Mahavratas) que definem a vida monástica jain',
+        'Estabeleceu a quádrupla comunidade jain de monges, monjas, leigos e leigas',
+        'Ensinou o anekantavada (a multifaceticidade da realidade), contribuição fundadora para a lógica indiana',
+      ],
+    },
+    quotes: [
+      { text: { en: 'Do not injure, abuse, oppress, enslave, insult, torment, torture or kill any creature or living being.', pt: 'Não machuques, abuses, oprimas, escravizes, insultes, atormentes, tortures ou mates nenhuma criatura ou ser vivo.' } },
+      { text: { en: 'A man is seated on top of a tree in the midst of a burning forest. He sees all living beings perish. But he doesn\'t realize that the same fate is soon to overtake him also.', pt: 'Um homem está sentado no alto de uma árvore no meio de uma floresta em chamas. Ele vê todos os seres vivos perecerem. Mas não percebe que o mesmo destino logo o alcançará também.' } },
+    ],
+    traits: {
+      en: ['Austere', 'Compassionate', 'Fearless'],
+      pt: ['Austero', 'Compassivo', 'Destemido'],
+    },
+    facts: {
+      en: [
+        'He practised such radical non-violence that he swept the ground before walking so as not to crush insects.',
+        'Unlike the Buddha, Mahavira taught that even plants and micro-organisms possess souls.',
+      ],
+      pt: [
+        'Praticou uma não-violência tão radical que varria o chão antes de caminhar para não esmagar insetos.',
+        'Ao contrário do Buda, Mahavira ensinava que até plantas e micro-organismos possuem almas.',
+      ],
+    },
+    figureImage: '/figures/mahavira.svg',
+  },
+  {
+    slug: 'kundakunda',
+    name: { en: 'Kundakunda', pt: 'Kundakunda' },
+    years: { en: 'c. 2nd century AD', pt: 'c. século II d.C.' },
+    birthplace: { en: 'South India', pt: 'Sul da Índia' },
+    schoolSlugs: ['jainism'],
+    epithet: { en: 'Master of the Pure Soul', pt: 'Mestre da Alma Pura' },
+    biography: {
+      en: [
+        'Kundakunda is the most celebrated philosopher of the Digambara (sky-clad) sect of Jainism, renowned for his penetrating analysis of the soul in its pure, liberated state versus its everyday, embodied condition. He is traditionally dated to around the 2nd century AD, though some scholars place him later. His philosophical works, written in Prakrit, remain foundational texts for Digambara Jains to this day.',
+        'His masterpiece, the Samayasara ("Essence of the Soul"), argues that from the highest standpoint (nishchaya naya), the pure soul is wholly self-contained, untouched by karma, action or even conventional morality — liberation consists in realising this innate perfection. This "pure soul" doctrine made him the inspiration for later Jain mysticism and a touchstone for debates about the relationship between absolute and conventional truth.',
+      ],
+      pt: [
+        'Kundakunda é o filósofo mais celebrado da seita Digambara (os que vestem o céu) do jainismo, famoso por sua análise penetrante da alma em seu estado puro e liberto versus sua condição cotidiana e encarnada. É datado tradicionalmente por volta do século II d.C., embora alguns estudiosos o situem mais tarde. Suas obras filosóficas, escritas em Prakrit, permanecem textos fundadores para os jainistas Digambara até hoje.',
+        'Sua obra-prima, o Samayasara ("Essência da Alma"), argumenta que, do ponto de vista mais elevado (nishchaya naya), a alma pura é inteiramente autossuficiente, intocada pelo karma, pela ação ou até pela moralidade convencional — a libertação consiste em realizar essa perfeição inata. Esta doutrina da "alma pura" fez dele a inspiração do misticismo jain posterior e uma referência central nos debates sobre a relação entre verdade absoluta e convencional.',
+      ],
+    },
+    contributions: {
+      en: [
+        'Authored the Samayasara, the definitive Digambara treatise on the pure soul',
+        'Developed the doctrine of two standpoints (nishchaya and vyavahara naya)',
+        'Influenced all subsequent Digambara theology and Jain mysticism',
+      ],
+      pt: [
+        'Autor do Samayasara, o tratado Digambara definitivo sobre a alma pura',
+        'Desenvolveu a doutrina dos dois pontos de vista (nishchaya e vyavahara naya)',
+        'Influenciou toda a teologia Digambara posterior e o misticismo jain',
+      ],
+    },
+    quotes: [
+      { text: { en: 'The soul, by nature, is pure consciousness, infinite knowledge and infinite bliss.', pt: 'A alma, por natureza, é consciência pura, conhecimento infinito e beatitude infinita.' } },
+      { text: { en: 'The liberated soul is not bound by actions; it is the actor of its own liberation alone.', pt: 'A alma liberta não é acorrentada pelas ações; ela é apenas o agente de sua própria libertação.' } },
+    ],
+    traits: {
+      en: ['Mystical', 'Rigorous', 'Introspective'],
+      pt: ['Místico', 'Rigoroso', 'Introspectivo'],
+    },
+    facts: {
+      en: [
+        'He is sometimes said to have visited the siddhas (liberated souls) in their celestial realm, a claim unique in Jain hagiography.',
+        'His works, though written in Prakrit, became the foundation for later Jain philosophical commentaries in Sanskrit.',
+      ],
+      pt: [
+        'Diz-se que visitou os siddhas (almas libertas) em seu reino celestial, uma afirmação única na hagiografia jain.',
+        'Suas obras, embora escritas em Prakrit, tornaram-se a base dos comentários filosóficos jains posteriores em sânscrito.',
+      ],
+    },
+    figureImage: '/figures/kundakunda.svg',
+  },
+  {
+    slug: 'umasvati',
+    name: { en: 'Umasvati', pt: 'Umasvati' },
+    years: { en: 'c. 2nd century AD', pt: 'c. século II d.C.' },
+    birthplace: { en: 'Ancient India', pt: 'Índia antiga' },
+    schoolSlugs: ['jainism'],
+    epithet: { en: 'Systematiser of the Jain World-view', pt: 'Sistematizador da Visão de Mundo Jain' },
+    biography: {
+      en: [
+        'Umasvati (or Umasvami) is the author of the Tattvartha Sutra ("That Which Is"), the first and only Jain philosophical text accepted as canonical by both the Digambara and Shvetambara sects. Written in Sanskrit rather than the vernacular Prakrit, it signals a deliberate move to engage the broader Indian philosophical world on equal terms. Through ten compact chapters, Umasvati gave Jainism a systematic ontology, epistemology and ethics that it had previously lacked in a single work.',
+        'The Tattvartha Sutra catalogues the seven (or nine) categories of reality: soul, non-soul, inflow, bondage, stoppage, shedding and liberation, providing precise definitions that Jain philosophers have commented on ever since. Its clarity made it the standard reference for all subsequent Jain philosophy and ensured that Jainism\'s extraordinarily detailed metaphysics — including its taxonomy of souls, atoms and cosmic realms — could be transmitted coherently across the centuries.',
+      ],
+      pt: [
+        'Umasvati (ou Umasvami) é o autor do Tattvartha Sutra ("O Que É"), o único texto filosófico jain aceito como canônico por ambas as seitas Digambara e Shvetambara. Escrito em sânscrito em vez do vernáculo Prakrit, sinaliza um movimento deliberado para dialogar com o mundo filosófico indiano mais amplo em pé de igualdade. Em dez capítulos compactos, Umasvati deu ao jainismo uma ontologia, epistemologia e ética sistemáticas que antes lhe faltavam numa única obra.',
+        'O Tattvartha Sutra cataloga as sete (ou nove) categorias da realidade: alma, não-alma, influxo, aprisionamento, parada, liberação e libertação, fornecendo definições precisas sobre as quais os filósofos jains têm comentado desde então. Sua clareza o tornou a referência padrão de toda a filosofia jain posterior e garantiu que a metafísica extraordinariamente detalhada do jainismo — incluindo sua taxonomia de almas, átomos e reinos cósmicos — pudesse ser transmitida coerentemente ao longo dos séculos.',
+      ],
+    },
+    contributions: {
+      en: [
+        'Authored the Tattvartha Sutra, the only Jain text canonical for all sects',
+        'Gave Jain philosophy its first systematic Sanskrit presentation',
+        'Codified the seven categories of reality (tattvas) still studied today',
+      ],
+      pt: [
+        'Autor do Tattvartha Sutra, o único texto jain canônico para todas as seitas',
+        'Deu à filosofia jain sua primeira apresentação sistemática em sânscrito',
+        'Codificou as sete categorias da realidade (tattvas) ainda estudadas hoje',
+      ],
+    },
+    quotes: [
+      { text: { en: 'Right faith, right knowledge and right conduct — these together constitute the path to liberation.', pt: 'Fé correta, conhecimento correto e conduta correta — esses juntos constituem o caminho para a libertação.' } },
+      { text: { en: 'The soul, endowed with consciousness, is the knower and the experiencer.', pt: 'A alma, dotada de consciência, é a conhecedora e a experimentadora.' } },
+    ],
+    traits: {
+      en: ['Systematic', 'Inclusive', 'Precise'],
+      pt: ['Sistemático', 'Inclusivo', 'Preciso'],
+    },
+    facts: {
+      en: [
+        'The Tattvartha Sutra\'s ten chapters cover topics from the structure of the cosmos to the nature of karma in under 350 aphorisms.',
+        'Both major Jain sects claim Umasvati as their own, making him the only figure revered across the full Jain tradition.',
+      ],
+      pt: [
+        'Os dez capítulos do Tattvartha Sutra cobrem tópicos da estrutura do cosmos à natureza do karma em menos de 350 aforismos.',
+        'Ambas as principais seitas jains reivindicam Umasvati como seu, tornando-o o único personagem reverenciado em toda a tradição jain.',
+      ],
+    },
+    figureImage: '/figures/umasvati.svg',
+  },
+
+  // ── Shintoism ──────────────────────────────────────────────────────────
+  {
+    slug: 'motoori-norinaga',
+    name: { en: 'Motoori Norinaga', pt: 'Motoori Norinaga' },
+    years: { en: '1730–1801', pt: '1730–1801' },
+    birthplace: { en: 'Matsusaka, Japan', pt: 'Matsusaka, Japão' },
+    schoolSlugs: ['shintoism'],
+    epithet: { en: 'Rediscoverer of the Japanese Soul', pt: 'Redescubridor da Alma Japonesa' },
+    biography: {
+      en: [
+        'Motoori Norinaga was the greatest scholar of the Kokugaku ("National Learning") movement, a current of 18th-century Japanese thought devoted to recovering the authentic spirit of Japan from beneath the centuries of Chinese and Buddhist influence. A physician by trade, he spent thirty-five years composing his magnum opus, the Kojikiden — a 44-volume commentary on the Kojiki, Japan\'s oldest chronicle — reading every sentence in classical Japanese to let the ancient kami speak in their own voice.',
+        'Norinaga\'s most celebrated concept is mono no aware — "the pathos of things," the bittersweet sensitivity to beauty and impermanence that he identified as the deepest emotion of Japanese literature and life. Against the Confucian emphasis on moral reason, he argued that the highest human response to the world is not rational judgment but this refined emotional attunement, which he found in full flower in the poetry of the Man\'yoshū and in Murasaki Shikibu\'s Tale of Genji.',
+      ],
+      pt: [
+        'Motoori Norinaga foi o maior estudioso do movimento Kokugaku ("Aprendizado Nacional"), uma corrente do pensamento japonês do século XVIII dedicada a recuperar o espírito autêntico do Japão de sob séculos de influência chinesa e budista. Médico de profissão, passou trinta e cinco anos compondo sua obra máxima, o Kojikiden — um comentário em 44 volumes sobre o Kojiki, a crônica mais antiga do Japão — lendo cada frase no japonês clássico para deixar os kami antigos falar em sua própria voz.',
+        'O conceito mais celebrado de Norinaga é o mono no aware — "a pathos das coisas", a sensibilidade agridoce à beleza e à impermanência que ele identificou como a emoção mais profunda da literatura e da vida japonesas. Contra a ênfase confuciana na razão moral, argumentou que a resposta humana mais elevada ao mundo não é o julgamento racional, mas esse refinado afinar emocional, que encontrou em plena floração na poesia do Man\'yoshū e no Conto de Genji de Murasaki Shikibu.',
+      ],
+    },
+    contributions: {
+      en: [
+        'Completed the 44-volume Kojikiden, the definitive philological study of Japan\'s oldest text',
+        'Articulated the concept of mono no aware as a uniquely Japanese aesthetic-emotional ideal',
+        'Laid the intellectual foundation for Kokugaku and the later Shintō revival',
+      ],
+      pt: [
+        'Completou o Kojikiden em 44 volumes, o estudo filológico definitivo do texto mais antigo do Japão',
+        'Articulou o conceito de mono no aware como um ideal estético-emocional tipicamente japonês',
+        'Lançou a base intelectual do Kokugaku e do posterior reavivamento xintoísta',
+      ],
+    },
+    quotes: [
+      { text: { en: 'The spirit of Japan is the spirit of the cherry blossom — beautiful, brief and pure.', pt: 'O espírito do Japão é o espírito da flor de cerejeira — belo, breve e puro.' } },
+      { text: { en: 'Mono no aware is knowing the heart of things, and being moved by them.', pt: 'Mono no aware é conhecer o coração das coisas e ser movido por elas.' } },
+    ],
+    traits: {
+      en: ['Meticulous', 'Romantic', 'Nationalist'],
+      pt: ['Meticuloso', 'Romântico', 'Nacionalista'],
+    },
+    facts: {
+      en: [
+        'He studied under the Kokugaku master Kamo no Mabuchi for just one night, but that meeting changed the direction of his life\'s work.',
+        'His grave at Myōhōji temple in Matsusaka is surrounded by cherry trees — planted at his own request.',
+      ],
+      pt: [
+        'Estudou com o mestre Kokugaku Kamo no Mabuchi por apenas uma noite, mas esse encontro mudou a direção do trabalho de sua vida.',
+        'Seu túmulo no templo Myōhōji em Matsusaka é rodeado por cerejeiras — plantadas a seu próprio pedido.',
+      ],
+    },
+    figureImage: '/figures/motoori-norinaga.svg',
+  },
+  {
+    slug: 'hirata-atsutane',
+    name: { en: 'Hirata Atsutane', pt: 'Hirata Atsutane' },
+    years: { en: '1776–1843', pt: '1776–1843' },
+    birthplace: { en: 'Akita, Japan', pt: 'Akita, Japão' },
+    schoolSlugs: ['shintoism'],
+    epithet: { en: 'Prophet of the National Soul', pt: 'Profeta da Alma Nacional' },
+    biography: {
+      en: [
+        'Hirata Atsutane was the most prolific and influential of the late Kokugaku scholars, transforming what had been a philological and aesthetic movement into a theological and political one. A self-taught outsider from the northern province of Akita, he became a posthumous disciple of Motoori Norinaga and went far beyond his master, developing a visionary Shintō cosmology that incorporated the afterlife, foreign religions and the ancient kami into a single Japanese-centred worldview.',
+        'Atsutane believed that Japan, created by the kami, was uniquely blessed among nations, and that the spirits of the dead returned to a hidden world (kakuriyo) overlapping with the living one. He was fascinated by Christian theology and Chinese learning, but only as mirrors to show what Japan had always possessed in superior form. His popularity among rural samurai and farmers laid the groundwork for the Meiji-era Shintō nationalism that would later be weaponised with catastrophic results.',
+      ],
+      pt: [
+        'Hirata Atsutane foi o mais prolífico e influente dos estudiosos tardios do Kokugaku, transformando o que havia sido um movimento filológico e estético em um movimento teológico e político. Um autodidata da província setentrional de Akita, tornou-se discípulo póstumo de Motoori Norinaga e foi muito além de seu mestre, desenvolvendo uma cosmologia xintoísta visionária que incorporava a vida após a morte, religiões estrangeiras e os kami antigos numa única visão de mundo centrada no Japão.',
+        'Atsutane acreditava que o Japão, criado pelos kami, era singularmente abençoado entre as nações, e que os espíritos dos mortos retornavam a um mundo oculto (kakuriyo) sobreposto ao dos vivos. Fascinava-o a teologia cristã e o pensamento chinês, mas apenas como espelhos para mostrar o que o Japão sempre possuíra de forma superior. Sua popularidade entre samurais rurais e camponeses lançou as bases para o nacionalismo xintoísta da era Meiji, que mais tarde seria instrumentalizado com resultados catastróficos.',
+      ],
+    },
+    contributions: {
+      en: [
+        'Developed the first comprehensive Shintō theology of the afterlife (kakuriyo)',
+        'Transformed Kokugaku from philology into a popular spiritual and political movement',
+        'Wrote over ninety works making Shintō doctrine accessible to rural and samurai audiences',
+      ],
+      pt: [
+        'Desenvolveu a primeira teologia xintoísta abrangente sobre a vida após a morte (kakuriyo)',
+        'Transformou o Kokugaku de filologia em um movimento espiritual e político popular',
+        'Escreveu mais de noventa obras tornando a doutrina xintoísta acessível a públicos rurais e samurais',
+      ],
+    },
+    quotes: [
+      { text: { en: 'The soul does not perish; it goes to dwell in the hidden world of the kami.', pt: 'A alma não perece; ela vai habitar o mundo oculto dos kami.' } },
+      { text: { en: 'Japan is the land of the gods; its people are the children of the kami.', pt: 'O Japão é a terra dos deuses; seu povo é filho dos kami.' } },
+    ],
+    traits: {
+      en: ['Visionary', 'Fervent', 'Syncretic'],
+      pt: ['Visionário', 'Fervoroso', 'Sincrético'],
+    },
+    facts: {
+      en: [
+        'He was exiled to Akita in 1841 for writing about the shogunate\'s foreign policy without permission.',
+        'He claimed to have met and interviewed a boy who had spent seven years in the hidden realm of the kami.',
+      ],
+      pt: [
+        'Foi exilado para Akita em 1841 por escrever sobre a política externa do xogunato sem permissão.',
+        'Afirmava ter encontrado e entrevistado um menino que passou sete anos no reino oculto dos kami.',
+      ],
+    },
+    figureImage: '/figures/hirata-atsutane.svg',
+  },
+  {
+    slug: 'kitabatake-chikafusa',
+    name: { en: 'Kitabatake Chikafusa', pt: 'Kitabatake Chikafusa' },
+    years: { en: '1293–1354', pt: '1293–1354' },
+    birthplace: { en: 'Japan', pt: 'Japão' },
+    schoolSlugs: ['shintoism'],
+    epithet: { en: 'Defender of the Divine Imperial Line', pt: 'Defensor da Linhagem Imperial Divina' },
+    biography: {
+      en: [
+        'Kitabatake Chikafusa was a nobleman and imperial loyalist who wrote his masterpiece, the Jinnō Shōtōki ("Record of the Legitimate Succession of the Divine Sovereigns"), in 1339 while barricaded in a castle during the civil war between the Northern and Southern Courts. The work was both a history of Japan and a theological treatise, arguing that Japan\'s unbroken line of imperial succession — descending from the sun goddess Amaterasu — made it unique and superior among all nations.',
+        'The Jinnō Shōtōki blends Shintō mythology, Buddhist thought and Confucian political theory into a vision of Japan as a sacred land whose emperors reign by divine right. Chikafusa\'s insistence on the identity of kami worship, ancestral reverence and imperial legitimacy established a template for later Shintō political theology. The text became enormously influential in the Meiji period when thinkers sought historical arguments for imperial restoration.',
+      ],
+      pt: [
+        'Kitabatake Chikafusa foi um nobre e lealista imperial que escreveu sua obra-prima, o Jinnō Shōtōki ("Registro da Sucessão Legítima dos Soberanos Divinos"), em 1339, enquanto estava barricado em um castelo durante a guerra civil entre as Cortes do Norte e do Sul. A obra era ao mesmo tempo uma história do Japão e um tratado teológico, argumentando que a linha ininterrupta de sucessão imperial do Japão — descendente da deusa do sol Amaterasu — tornava-o único e superior entre todas as nações.',
+        'O Jinnō Shōtōki mistura mitologia xintoísta, pensamento budista e teoria política confuciana numa visão do Japão como uma terra sagrada cujos imperadores reinam por direito divino. A insistência de Chikafusa na identidade do culto aos kami, reverência ancestral e legitimidade imperial estabeleceu um modelo para a teologia política xintoísta posterior. O texto tornou-se enormemente influente no período Meiji, quando pensadores buscavam argumentos históricos para a restauração imperial.',
+      ],
+    },
+    contributions: {
+      en: [
+        'Authored the Jinnō Shōtōki, the foundational text of Shintō political theology',
+        'Articulated the doctrine of Japan as a unique, kami-descended sacred nation',
+        'Synthesised Shintō, Buddhist and Confucian ideas into a coherent imperial ideology',
+      ],
+      pt: [
+        'Autor do Jinnō Shōtōki, o texto fundador da teologia política xintoísta',
+        'Articulou a doutrina do Japão como nação sagrada única, descendente dos kami',
+        'Sintetizou ideias xintoístas, budistas e confucianas numa ideologia imperial coerente',
+      ],
+    },
+    quotes: [
+      { text: { en: 'Japan is the divine country. The heavenly ancestor founded it, and the sun goddess has passed on the throne to her descendants in an unbroken line.', pt: 'O Japão é o país divino. O ancestral celestial o fundou, e a deusa do sol transmitiu o trono a seus descendentes numa linha ininterrupta.' } },
+      { text: { en: 'The way of the gods is the way of the emperor; and the way of the emperor is the way of the gods.', pt: 'O caminho dos deuses é o caminho do imperador; e o caminho do imperador é o caminho dos deuses.' } },
+    ],
+    traits: {
+      en: ['Loyal', 'Erudite', 'Ideological'],
+      pt: ['Leal', 'Erudito', 'Ideológico'],
+    },
+    facts: {
+      en: [
+        'He wrote the Jinnō Shōtōki in the field, during a military campaign, to bolster the morale of the Southern Court forces.',
+        'His synthesis of Shintō and Buddhist ideas (shinbutsu-shūgō) was later deliberately dismantled during the Meiji separation of Shintō and Buddhism.',
+      ],
+      pt: [
+        'Escreveu o Jinnō Shōtōki em campo, durante uma campanha militar, para reforçar o moral das forças da Corte do Sul.',
+        'Sua síntese de ideias xintoístas e budistas (shinbutsu-shūgō) foi posteriormente desmantelada deliberadamente durante a separação meiji do xintoísmo e do budismo.',
+      ],
+    },
+    figureImage: '/figures/kitabatake-chikafusa.svg',
+  },
 ];

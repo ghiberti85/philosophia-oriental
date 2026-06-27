@@ -334,4 +334,136 @@ export const quizzesExtra: QuizQuestion[] = [
     },
     explanation: { en: 'He was a diplomat and an Under-Secretary General of the League of Nations.', pt: 'Foi diplomata e subsecretário-geral da Liga das Nações.' },
   },
+
+  // ── Mahavira ───────────────────────────────────────────────────────────
+  {
+    id: 'mahavira-1',
+    philosopherSlug: 'mahavira',
+    prompt: { en: 'What is the supreme ethical principle that Mahavira placed at the centre of Jainism?', pt: 'Qual é o princípio ético supremo que Mahavira colocou no centro do jainismo?' },
+    options: {
+      en: ['Ahimsa (non-violence)', 'Dharma (cosmic law)', 'Karma (action)', 'Yoga (union)'],
+      pt: ['Ahimsa (não-violência)', 'Dharma (lei cósmica)', 'Karma (ação)', 'Yoga (união)'],
+    },
+    explanation: { en: 'Ahimsa — absolute non-violence toward every living being — is the bedrock of Jain ethics as taught by Mahavira.', pt: 'O ahimsa — a não-violência absoluta em relação a todos os seres vivos — é o alicerce da ética jain conforme ensinado por Mahavira.' },
+  },
+  {
+    id: 'mahavira-2',
+    philosopherSlug: 'mahavira',
+    prompt: { en: 'What title is given to Mahavira in the Jain tradition?', pt: 'Que título é dado a Mahavira na tradição jain?' },
+    options: {
+      en: ['The 24th Tirthankara', 'The Bodhisattva', 'The Avatar', 'The Arhat'],
+      pt: ['O 24º Tirthankara', 'O Bodhisattva', 'O Avatar', 'O Arhat'],
+    },
+    explanation: { en: 'Mahavira is the 24th Tirthankara, a "ford-maker" who crossed the ocean of existence and shows others the way.', pt: 'Mahavira é o 24º Tirthankara, um "construtor de vau" que atravessou o oceano da existência e mostra o caminho aos outros.' },
+  },
+
+  // ── Kundakunda ─────────────────────────────────────────────────────────
+  {
+    id: 'kundakunda-1',
+    philosopherSlug: 'kundakunda',
+    prompt: { en: 'What is the title of Kundakunda\'s most celebrated philosophical work?', pt: 'Qual é o título da obra filosófica mais celebrada de Kundakunda?' },
+    options: {
+      en: ['Samayasara', 'Tattvartha Sutra', 'Acaranga Sutra', 'Dhammapada'],
+      pt: ['Samayasara', 'Tattvartha Sutra', 'Acaranga Sutra', 'Dhammapada'],
+    },
+    explanation: { en: 'The Samayasara ("Essence of the Soul") is his masterpiece, exploring the soul in its pure, liberated state.', pt: 'O Samayasara ("Essência da Alma") é sua obra-prima, explorando a alma em seu estado puro e liberto.' },
+  },
+  {
+    id: 'kundakunda-2',
+    philosopherSlug: 'kundakunda',
+    prompt: { en: 'To which sect of Jainism did Kundakunda belong?', pt: 'A qual seita do jainismo Kundakunda pertencia?' },
+    options: {
+      en: ['Digambara', 'Shvetambara', 'Theravada', 'Mahayana'],
+      pt: ['Digambara', 'Shvetambara', 'Theravada', 'Mahayana'],
+    },
+    explanation: { en: 'Kundakunda was the greatest philosopher of the Digambara ("sky-clad") sect of Jainism.', pt: 'Kundakunda foi o maior filósofo da seita Digambara ("vestidos pelo céu") do jainismo.' },
+  },
+
+  // ── Umasvati ───────────────────────────────────────────────────────────
+  {
+    id: 'umasvati-1',
+    philosopherSlug: 'umasvati',
+    prompt: { en: 'What is unique about the Tattvartha Sutra among Jain texts?', pt: 'O que há de único no Tattvartha Sutra entre os textos jains?' },
+    options: {
+      en: ['It is accepted as canonical by both Digambara and Shvetambara sects', 'It is the oldest Jain text', 'It was written by Mahavira himself', 'It is written in Sanskrit verse'],
+      pt: ['É aceito como canônico pelas seitas Digambara e Shvetambara', 'É o mais antigo texto jain', 'Foi escrito pelo próprio Mahavira', 'Está escrito em verso sânscrito'],
+    },
+    explanation: { en: 'The Tattvartha Sutra is the only Jain philosophical text accepted as authoritative by both major sects.', pt: 'O Tattvartha Sutra é o único texto filosófico jain aceito como autoritativo por ambas as principais seitas.' },
+  },
+  {
+    id: 'umasvati-2',
+    philosopherSlug: 'umasvati',
+    prompt: { en: 'In what language did Umasvati write the Tattvartha Sutra, and why was this significant?', pt: 'Em que língua Umasvati escreveu o Tattvartha Sutra e por que isso era significativo?' },
+    options: {
+      en: ['Sanskrit, to engage the broader Indian philosophical world', 'Prakrit, to reach common people', 'Pali, to connect with Buddhism', 'Tamil, for southern India'],
+      pt: ['Sânscrito, para dialogar com o mundo filosófico indiano mais amplo', 'Prakrit, para alcançar o povo comum', 'Páli, para conectar-se com o budismo', 'Tâmil, para o sul da Índia'],
+    },
+    explanation: { en: 'Writing in Sanskrit rather than Prakrit was a deliberate move to engage Indian philosophy on equal intellectual terms.', pt: 'Escrever em sânscrito em vez de Prakrit foi um movimento deliberado para dialogar com a filosofia indiana em pé de igualdade intelectual.' },
+  },
+
+  // ── Motoori Norinaga ───────────────────────────────────────────────────
+  {
+    id: 'motoori-norinaga-1',
+    philosopherSlug: 'motoori-norinaga',
+    prompt: { en: 'What concept did Motoori Norinaga identify as the deepest emotion in Japanese literature?', pt: 'Que conceito Motoori Norinaga identificou como a emoção mais profunda da literatura japonesa?' },
+    options: {
+      en: ['Mono no aware (the pathos of things)', 'Wabi-sabi (beauty of imperfection)', 'Mushin (no-mind)', 'Giri (duty)'],
+      pt: ['Mono no aware (a pathos das coisas)', 'Wabi-sabi (beleza da imperfeição)', 'Mushin (sem-mente)', 'Giri (dever)'],
+    },
+    explanation: { en: 'Mono no aware — the bittersweet sensitivity to beauty and impermanence — was Norinaga\'s central aesthetic concept.', pt: 'O mono no aware — a sensibilidade agridoce à beleza e à impermanência — foi o conceito estético central de Norinaga.' },
+  },
+  {
+    id: 'motoori-norinaga-2',
+    philosopherSlug: 'motoori-norinaga',
+    prompt: { en: 'How many volumes did Norinaga\'s commentary on the Kojiki (Kojikiden) span?', pt: 'Quantos volumes abrangeu o comentário de Norinaga sobre o Kojiki (Kojikiden)?' },
+    options: {
+      en: ['44', '12', '8', '100'],
+      pt: ['44', '12', '8', '100'],
+    },
+    explanation: { en: 'The Kojikiden was a monumental 44-volume study that Norinaga spent thirty-five years completing.', pt: 'O Kojikiden foi um monumental estudo em 44 volumes que Norinaga levou trinta e cinco anos para completar.' },
+  },
+
+  // ── Hirata Atsutane ────────────────────────────────────────────────────
+  {
+    id: 'hirata-atsutane-1',
+    philosopherSlug: 'hirata-atsutane',
+    prompt: { en: 'What was Hirata Atsutane\'s most distinctive contribution to Shintō theology?', pt: 'Qual foi a contribuição mais distinta de Hirata Atsutane para a teologia xintoísta?' },
+    options: {
+      en: ['A comprehensive theology of the afterlife (kakuriyo)', 'A commentary on the Kojiki', 'A theory of the Buddha\'s kami nature', 'The codification of shrine rituals'],
+      pt: ['Uma teologia abrangente sobre a vida após a morte (kakuriyo)', 'Um comentário sobre o Kojiki', 'Uma teoria da natureza kami do Buda', 'A codificação dos rituais dos santuários'],
+    },
+    explanation: { en: 'Atsutane developed the first systematic Shintō account of the afterlife, the hidden realm (kakuriyo) where souls go after death.', pt: 'Atsutane desenvolveu o primeiro relato xintoísta sistemático da vida após a morte, o reino oculto (kakuriyo) para onde as almas vão após a morte.' },
+  },
+  {
+    id: 'hirata-atsutane-2',
+    philosopherSlug: 'hirata-atsutane',
+    prompt: { en: 'To which school of thought did Hirata Atsutane belong?', pt: 'A qual escola de pensamento Hirata Atsutane pertencia?' },
+    options: {
+      en: ['Kokugaku (National Learning)', 'Zen Buddhism', 'Neo-Confucianism', 'Bushidō'],
+      pt: ['Kokugaku (Aprendizado Nacional)', 'Budismo Zen', 'Neoconfucionismo', 'Bushidō'],
+    },
+    explanation: { en: 'Atsutane was the most prolific and influential scholar of the Kokugaku movement.', pt: 'Atsutane foi o estudioso mais prolífico e influente do movimento Kokugaku.' },
+  },
+
+  // ── Kitabatake Chikafusa ───────────────────────────────────────────────
+  {
+    id: 'kitabatake-chikafusa-1',
+    philosopherSlug: 'kitabatake-chikafusa',
+    prompt: { en: 'What is the Jinnō Shōtōki?', pt: 'O que é o Jinnō Shōtōki?' },
+    options: {
+      en: ['A 14th-century text arguing the divine lineage of Japan\'s emperors', 'A Zen koan collection', 'A samurai manual on strategy', 'A commentary on the Tao Te Ching'],
+      pt: ['Um texto do século XIV argumentando a linhagem divina dos imperadores do Japão', 'Uma coleção de koans Zen', 'Um manual samurai sobre estratégia', 'Um comentário sobre o Tao Te Ching'],
+    },
+    explanation: { en: 'The Jinnō Shōtōki, written in 1339, is the foundational text of Shintō political theology, arguing Japan\'s sacred imperial lineage.', pt: 'O Jinnō Shōtōki, escrito em 1339, é o texto fundador da teologia política xintoísta, argumentando a sagrada linhagem imperial do Japão.' },
+  },
+  {
+    id: 'kitabatake-chikafusa-2',
+    philosopherSlug: 'kitabatake-chikafusa',
+    prompt: { en: 'Under what circumstances did Kitabatake Chikafusa write the Jinnō Shōtōki?', pt: 'Em que circunstâncias Kitabatake Chikafusa escreveu o Jinnō Shōtōki?' },
+    options: {
+      en: ['While barricaded in a castle during a civil war', 'During a peaceful retirement at a Zen temple', 'As a young monk in training', 'While serving as imperial regent'],
+      pt: ['Enquanto estava barricado em um castelo durante uma guerra civil', 'Durante uma aposentadoria pacífica em um templo Zen', 'Como jovem monge em formação', 'Enquanto servia como regente imperial'],
+    },
+    explanation: { en: 'He wrote it in 1339 during the civil war between the Northern and Southern Courts, to bolster the morale of the Southern Court.', pt: 'Escreveu-o em 1339 durante a guerra civil entre as Cortes do Norte e do Sul, para fortalecer o moral da Corte do Sul.' },
+  },
 ];
