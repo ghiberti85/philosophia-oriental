@@ -12,6 +12,7 @@ import { Topbar } from '@/components/Topbar';
 import { SchoolPanels } from '@/components/dashboard/SchoolPanels';
 import { CommandPalette } from '@/components/CommandPalette';
 import { buildGraph } from '@/lib/graph';
+import { GraphErrorBoundary } from './GraphErrorBoundary';
 import { GraphFallback } from './GraphFallback';
 import { GraphLegend } from './GraphLegend';
 import { GraphMinimap } from './GraphMinimap';
@@ -105,13 +106,15 @@ export function GraphDashboard({ locale }: { locale: Locale }) {
         <div className="graph-stage">
           {view === 'graph' && mounted ? (
             <>
-              <GraphScene
-                selectedSlug={selectedSlug}
-                onSelect={select}
-                locale={locale}
-                animate={!reducedMotion}
-                dark={resolvedTheme === 'dark'}
-              />
+              <GraphErrorBoundary locale={locale}>
+                <GraphScene
+                  selectedSlug={selectedSlug}
+                  onSelect={select}
+                  locale={locale}
+                  animate={!reducedMotion}
+                  dark={resolvedTheme === 'dark'}
+                />
+              </GraphErrorBoundary>
               <span className="graph-hint mono" aria-hidden="true">{t(dict.graphHint, locale)}</span>
               <span className="graph-motif" aria-hidden="true" />
               <GraphMinimap graph={graph} selectedSlug={selectedSlug} onSelect={select} />

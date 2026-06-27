@@ -79,6 +79,33 @@
     animation: none;
   }
 }
+/* Error boundary fallback shown when WebGL / Three.js fails to initialise */
+.graph-error {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: clamp(16px, 4vw, 32px);
+  text-align: center;
+}
+.graph-error__icon {
+  font-size: 2rem;
+  color: var(--accent);
+  opacity: 0.5;
+}
+.graph-error__msg {
+  margin: 0;
+  color: var(--fg);
+  font-size: 0.95rem;
+}
+.graph-error__sub {
+  margin: 0;
+  color: var(--fg-muted);
+  font-size: 0.82rem;
+}
+
 .graph-loading {
   position: absolute;
   inset: 0;
