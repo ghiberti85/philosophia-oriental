@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import '../globals.css';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 import { Providers } from '@/components/Providers';
 import { dict } from '@/data/dictionary';
 import { isLocale, LOCALES, LOCALE_HTML_LANG, t, type Locale } from '@/lib/i18n';
@@ -54,6 +55,7 @@ export default function LocaleLayout({
       </head>
       <body>
         <Providers>{children}</Providers>
+        <SpeedInsights />
       </body>
     </html>
   );
