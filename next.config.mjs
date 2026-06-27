@@ -1,4 +1,5 @@
 import withPWA from 'next-pwa';
+import withBundleAnalyzer from '@next/bundle-analyzer';
 
 const isDev = process.env.NODE_ENV === 'development';
 
@@ -70,7 +71,9 @@ const nextConfig = {
   },
 };
 
-export default withPWA({
+const analyze = withBundleAnalyzer({ enabled: process.env.ANALYZE === 'true' });
+
+export default analyze(withPWA({
   dest: 'public',
   disable: isDev,
   register: true,
@@ -120,4 +123,4 @@ export default withPWA({
       },
     },
   ],
-})(nextConfig);
+})(nextConfig));
