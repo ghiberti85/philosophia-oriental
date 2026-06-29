@@ -122,6 +122,48 @@ questions, `prepareQuestion` shuffles the four options (convention: first option
 (`mulberry32`) for deterministic tests. `QuizModal` is an `intro → playing →
 results` state machine persisting the best score per scope in `localStorage`.
 
+## Command Palette
+
+`CommandPalette` (⌘K / Ctrl+K) is a global keyboard shortcut mounted in
+`GraphDashboard`. It opens a modal search that filters schools and sages by
+name in the active locale (max 5 results each). Selecting a school calls
+`onSelect(slug)` to update the graph; selecting a sage navigates to its detail
+page via `useRouter`. Arrow keys and Enter drive keyboard navigation.
+
+## Minimap
+
+`GraphMinimap` renders a 120×120 SVG absolutely positioned in the bottom-right
+corner of `.graph-stage`. It projects each node's 3D position onto a 2D plane
+(x/y axes, normalized to [10, 110] SVG units), draws edges colored by relation
+type, and rings the selected node in gold. Clicking any node calls `onSelect`.
+A toggle button shows/hides it. The component is covered by unit tests including
+an axe accessibility check.
+
+## Error boundary
+
+`GraphErrorBoundary` is a React class component wrapping `<GraphScene>`. It
+catches WebGL / Three.js runtime errors and renders a styled fallback with a
+retry button, ensuring a crash never produces a blank, silent canvas.
+
+## Dashboard panels
+
+`SchoolPanels` (`src/components/dashboard/`) renders six framed panels.
+Heavy modals (`PhilosopherModal`, `QuizModal`) are lazy-loaded via
+`next/dynamic`; lighter modals (`StatModal`, `IdeaModal`, `ContextModal`,
+`SchoolModal`) are extracted to `SchoolPanels.modals.tsx` — a separate JS chunk
+downloaded only when first opened. This keeps the initial bundle lean.
+
+## Observability
+
+`@vercel/speed-insights` is mounted in the root layout and reports Core Web
+Vitals (LCP, CLS, INP) to the Vercel dashboard automatically.
+
+## CI
+
+`.github/workflows/ci.yml` runs lint, tests and a production build on every
+push/PR, plus `npm audit --omit=dev --audit-level=high` — any high or critical
+dependency vulnerability fails the build.
+
 ## Testing strategy
 
 - **Pure logic**: exhaustive unit tests with seeded RNG (shuffle, sample, score
@@ -130,11 +172,7 @@ results` state machine persisting the best score per scope in `localStorage`.
   cross-reference, relation target, emblem, option count and id uniqueness —
   content bugs fail CI, not production.
 - **Components**: Testing Library drives a full quiz round through the real
-  engine (no mocks).
+  engine (no mocks); `GraphMinimap` is covered by snapshot, interaction and
+  axe accessibility tests (jest-axe).
 - The WebGL canvas is intentionally not unit-tested (jsdom has no GL); its logic
   lives in `lib/graph.ts`.
-
-## CI
-
-`.github/workflows/ci.yml` runs lint, tests and a production build on every
-push/PR, plus an informational `npm audit`.
