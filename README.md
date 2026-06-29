@@ -14,8 +14,10 @@ This is the Eastern-philosophy companion to [**philosophia**](https://github.com
 | --- | --- |
 | 🪐 **3D knowledge graph** | Eight schools as nodes in a constellation (react-three-fiber); edges encode lineage, influence, synthesis and opposition. Selecting a node opens its dossier below. |
 | 🧭 **Accessible by design** | A keyboard- and screen-reader-friendly list view mirrors the graph and is the default under `prefers-reduced-motion`. |
-| 🏯 **8 schools of thought** | Confucianism, Taoism, Legalism, Mohism, Buddhism, Zen, Vedanta, Bushidō — each with core ideas, sages, deep-dive essays, a curated bibliography and a multi-paragraph historical context. |
-| 🧙 **30 sages** | Confucius, Mencius, Xunzi, Zhu Xi, Laozi, Zhuangzi, the Buddha, Nagarjuna, Huineng, Hakuin, Shankara, Ramanuja, Musashi and many more — each with biography, contributions, sayings, traits and facts. |
+| 🏯 **10 schools of thought** | Confucianism, Taoism, Legalism, Mohism, Buddhism, Zen, Vedanta, Bushidō, Jainism, Shintoism — each with core ideas, sages, deep-dive essays, a curated bibliography and a multi-paragraph historical context. |
+| 🧙 **36 sages** | Confucius, Mencius, Xunzi, Zhu Xi, Laozi, Zhuangzi, the Buddha, Nagarjuna, Huineng, Hakuin, Shankara, Ramanuja, Musashi, Mahavira, Motoori Norinaga and many more — each with biography, contributions, sayings, traits and facts. |
+| 🔍 **Command Palette (⌘K)** | Global keyboard search across all schools and sages; schools fly the graph camera to their node, sages navigate to their detail page. |
+| 🗺 **Graph Minimap** | 120×120 SVG overlay in the corner of the constellation — shows all nodes and edges in 2D, highlights the selected school with a gold ring, and is clickable for quick navigation. |
 | 🗓 **Parallel history** | Each school's context modal pairs its essay with a dated timeline of contemporaneous events — wars, dynasties, inventions and milestones. |
 | 🕸 **Connections panel** | Every school links back into the graph; jump straight to a related tradition. |
 | 🎲 **Randomized quizzes** | Each round draws 5 random questions with shuffled options; best score per school and per sage persisted in `localStorage`. |
@@ -37,23 +39,26 @@ This is the Eastern-philosophy companion to [**philosophia**](https://github.com
 | Styling | Tailwind CSS utilities + a custom CSS design system (`color-mix(in oklch)` adaptive tokens) |
 | Theming | [next-themes](https://github.com/pacocoursey/next-themes) |
 | PWA | [next-pwa](https://github.com/shadowwalker/next-pwa) + Workbox |
-| Testing | [Vitest](https://vitest.dev) + Testing Library |
+| Testing | [Vitest](https://vitest.dev) + Testing Library + [jest-axe](https://github.com/nicktindall/jest-axe) (accessibility) |
+| Observability | [@vercel/speed-insights](https://vercel.com/docs/speed-insights) — LCP/CLS/INP in the Vercel dashboard |
+| Bundle analysis | [@next/bundle-analyzer](https://www.npmjs.com/package/@next/bundle-analyzer) — `npm run analyze` |
 
 ## 🚀 Getting started
 
 ```bash
 npm install
-npm run dev        # http://localhost:3000 (redirects to /en; /pt for Portuguese)
+npm run dev        # http://localhost:3000 (Turbopack, redirects to /en; /pt for Portuguese)
 ```
 
 Other scripts:
 
 ```bash
-npm test           # run the test suite once
-npm run test:watch # watch mode
-npm run lint       # eslint (next/core-web-vitals)
-npm run build      # production build (static, per-locale)
-npm start          # serve the production build
+npm test              # run the test suite once
+npm run test:watch    # watch mode
+npm run lint          # eslint (next/core-web-vitals)
+npm run build         # production build (static, per-locale)
+npm start             # serve the production build
+npm run analyze       # ANALYZE=true build — opens interactive bundle map
 ```
 
 ## 📁 Project structure
@@ -80,10 +85,12 @@ to add a school, sage, relation, quiz question or language.
 ## 🗺 Roadmap (Phase 2 — high "wow factor")
 
 **Shipped:** camera fly-to on selection · energy motes flowing along edges · bloom postprocessing ·
-drifting starfield with twinkling stars (custom GLSL shader) · relation legend · ensō intro animation.
+drifting starfield with twinkling stars (custom GLSL shader) · relation legend · ensō intro animation ·
+Command Palette (⌘K) · 2D graph minimap · Jainism & Shintoism (10 schools, 36 sages) ·
+lazy-loaded modals (code splitting) · WebGL error boundary · Vercel Speed Insights · jest-axe accessibility tests.
 
-**Next:** DALL-E figures and scenes · procedural 3D busts on sage pages · relation minimap ·
-volumetric mist · sound · Vercel deploy with OG images.
+**Next:** DALL-E figures and scenes · procedural 3D busts on sage pages · Playwright E2E tests ·
+Biome (replace ESLint + Prettier) · volumetric mist · sound · OG images.
 
 ## 🔐 Security & 📄 License
 
