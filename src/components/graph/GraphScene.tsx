@@ -150,7 +150,7 @@ const TWINKLE_VERT = `
       : 1.0;
     vAlpha = flicker;
     vec4 mvPos = modelViewMatrix * vec4(position, 1.0);
-    gl_PointSize = 1.4 * (300.0 / -mvPos.z);
+    gl_PointSize = 1.0 * (300.0 / -mvPos.z);
     gl_Position = projectionMatrix * mvPos;
   }
 `;
@@ -160,7 +160,7 @@ const TWINKLE_FRAG = `
     float d = length(gl_PointCoord - vec2(0.5));
     if (d > 0.5) discard;
     float edge = 1.0 - smoothstep(0.2, 0.5, d);
-    gl_FragColor = vec4(1.0, 1.0, 1.0, edge * vAlpha);
+    gl_FragColor = vec4(1.0, 1.0, 1.0, edge * vAlpha * 0.55);
   }
 `;
 
