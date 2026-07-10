@@ -27,7 +27,7 @@
     "next-themes": "^0.3.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "three": "^0.169.0"
+    "three": "^0.185.1"
   },
   "devDependencies": {
     "@next/bundle-analyzer": "^16.2.9",
@@ -38,13 +38,13 @@
     "@types/node": "^20.16.11",
     "@types/react": "^18.3.11",
     "@types/react-dom": "^18.3.1",
-    "@types/three": "^0.169.0",
+    "@types/three": "^0.185.1",
     "@vitejs/plugin-react": "^4.3.2",
     "autoprefixer": "^10.4.20",
     "eslint": "^8.57.1",
     "eslint-config-next": "^14.2.15",
     "jest-axe": "^10.0.0",
-    "jsdom": "^25.0.1",
+    "jsdom": "^29.1.1",
     "postcss": "^8.4.47",
     "prettier": "^3.3.3",
     "tailwindcss": "^3.4.13",

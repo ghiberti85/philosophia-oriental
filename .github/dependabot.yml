@@ -22,6 +22,16 @@ updates:
         update-types: ['version-update:semver-major']
       - dependency-name: '@react-three/postprocessing'
         update-types: ['version-update:semver-major']
+      # Same React 18 constraint as above: react and react-dom must stay in
+      # lockstep, and Dependabot only ever proposed bumping react alone.
+      - dependency-name: 'react'
+        update-types: ['version-update:semver-major']
+      - dependency-name: 'react-dom'
+        update-types: ['version-update:semver-major']
+      # eslint-config-next 15+ requires eslint 9+; this project is still on
+      # eslint 8. Revisit both together when migrating off eslint 8.
+      - dependency-name: 'eslint-config-next'
+        update-types: ['version-update:semver-major']
   - package-ecosystem: github-actions
     directory: '/'
     schedule:
