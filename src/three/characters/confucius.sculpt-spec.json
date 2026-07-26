@@ -1605,9 +1605,9 @@
       },
       "transform": {
         "position": [
-          -0.34,
-          0.15,
-          0.05
+          -0.3,
+          0.12,
+          0.1
         ],
         "rotation": [
           0,
@@ -1728,9 +1728,9 @@
       },
       "transform": {
         "position": [
-          0.34,
-          0.15,
-          0.05
+          0.3,
+          0.12,
+          0.1
         ],
         "rotation": [
           0,
@@ -3085,17 +3085,17 @@
       "parent": "root",
       "attachment": null,
       "dimensions": {
-        "width": 0.24,
-        "height": 0.42,
-        "depth": 0.16,
+        "width": 0.22,
+        "height": 0.4,
+        "depth": 0.14,
         "units": "relative",
         "confidence": 0.75
       },
       "transform": {
         "position": [
           0,
-          0.42,
-          0.1
+          0.4,
+          0.22
         ],
         "rotation": [
           0,
@@ -3103,9 +3103,9 @@
           0
         ],
         "scale": [
-          0.24,
-          0.42,
-          0.16
+          0.22,
+          0.4,
+          0.14
         ]
       },
       "actionProfile": {
@@ -3838,8 +3838,8 @@
       "transform": {
         "position": [
           -0.09,
-          -0.28,
-          0.3
+          0.02,
+          0.36
         ],
         "rotation": [
           0,
@@ -3963,8 +3963,8 @@
       "transform": {
         "position": [
           0.09,
-          -0.3,
-          0.32
+          0.0,
+          0.38
         ],
         "rotation": [
           0,
@@ -4270,29 +4270,28 @@
     {
       "id": "skin",
       "kind": "MeshStandardMaterial",
-      "baseColorHex": "#c9986f",
       "roughness": 0.65,
       "metalness": 0.0,
       "localOverrides": [
         "head.faceWrinkles"
       ],
-      "notes": "Warm-toned aged skin, low-mid roughness, no true SSS; slightly desaturated shadow tint per grimoire/character/reconstruction.md skin recipe."
+      "notes": "Warm-toned aged skin, low-mid roughness, no true SSS; slightly desaturated shadow tint per grimoire/character/reconstruction.md skin recipe.",
+      "baseColor": "#c9986f"
     },
     {
       "id": "hair",
       "kind": "MeshStandardMaterial",
-      "baseColorHex": "#8f8a86",
       "roughness": 0.8,
       "metalness": 0.0,
       "localOverrides": [
         "beard.clumpSystem"
       ],
-      "notes": "Grey/white stylized hair clumps (beard, mustache, eyebrows, temple fringe) — no strand-level geometry, per single-image reconstruction guidance."
+      "notes": "Grey/white stylized hair clumps (beard, mustache, eyebrows, temple fringe) — no strand-level geometry, per single-image reconstruction guidance.",
+      "baseColor": "#8f8a86"
     },
     {
       "id": "robeSilk",
       "kind": "MeshPhysicalMaterial",
-      "baseColorHex": "#8a2f1f",
       "roughness": 0.42,
       "metalness": 0.0,
       "clearcoat": 0.15,
@@ -4301,62 +4300,63 @@
         "robeChest.dragonMedallionMask",
         "rightSleeve.drape"
       ],
-      "notes": "Rust-red silk, moderate sheen (clearcoat) reading as satin/brocade; gold dragon-medallion embroidery as an albedo + normal local override mask."
+      "notes": "Rust-red silk, moderate sheen (clearcoat) reading as satin/brocade; gold dragon-medallion embroidery as an albedo + normal local override mask.",
+      "baseColor": "#8a2f1f"
     },
     {
       "id": "collarSilk",
       "kind": "MeshStandardMaterial",
-      "baseColorHex": "#1c1a1c",
       "roughness": 0.5,
       "metalness": 0.0,
       "localOverrides": [
         "collarPanel.embroideryMask"
       ],
-      "notes": "Black inner lapel panel; gold-thread dragon/cloud embroidery as a brighter albedo mask, thin gold piping edge."
+      "notes": "Black inner lapel panel; gold-thread dragon/cloud embroidery as a brighter albedo mask, thin gold piping edge.",
+      "baseColor": "#1c1a1c"
     },
     {
       "id": "sashSilk",
       "kind": "MeshStandardMaterial",
-      "baseColorHex": "#211d1f",
       "roughness": 0.48,
       "metalness": 0.0,
       "localOverrides": [
         "waistSash"
       ],
-      "notes": "Diagonal black waist sash, same embroidery-mask treatment as the collar panel, gold piping edge."
+      "notes": "Diagonal black waist sash, same embroidery-mask treatment as the collar panel, gold piping edge.",
+      "baseColor": "#211d1f"
     },
     {
       "id": "cap",
       "kind": "MeshStandardMaterial",
-      "baseColorHex": "#7a1f22",
       "roughness": 0.55,
       "metalness": 0.0,
-      "notes": "Red felt/silk scholar's cap body."
+      "notes": "Red felt/silk scholar's cap body.",
+      "baseColor": "#7a1f22"
     },
     {
       "id": "capTrim",
       "kind": "MeshStandardMaterial",
-      "baseColorHex": "#4a1416",
       "roughness": 0.5,
       "metalness": 0.0,
-      "notes": "Dark maroon trim band and ribbon ties."
+      "notes": "Dark maroon trim band and ribbon ties.",
+      "baseColor": "#4a1416"
     },
     {
       "id": "goldTrim",
       "kind": "MeshPhysicalMaterial",
-      "baseColorHex": "#c9a341",
       "roughness": 0.3,
       "metalness": 0.85,
       "clearcoat": 0.2,
-      "notes": "Metal-like gold trim/ornament/piping accents (cap button, collar+sash piping, embroidery thread highlights)."
+      "notes": "Metal-like gold trim/ornament/piping accents (cap button, collar+sash piping, embroidery thread highlights).",
+      "baseColor": "#c9a341"
     },
     {
       "id": "eyeWhite",
       "kind": "MeshStandardMaterial",
-      "baseColorHex": "#e8e2d8",
       "roughness": 0.15,
       "metalness": 0.0,
-      "notes": "Glossy sclera base; iris disc + catchlight are a separate decal/emissive dot per character material recipe."
+      "notes": "Glossy sclera base; iris disc + catchlight are a separate decal/emissive dot per character material recipe.",
+      "baseColor": "#e8e2d8"
     }
   ],
   "repetitionSystems": [
